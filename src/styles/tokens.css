@@ -1,0 +1,15 @@
+:root {
+  color-scheme: dark;
+  --bg: #090b0d;
+  --surface: #101417;
+  --surface-raised: #151b20;
+  --text: #f1f4f5;
+  --muted: #a4adb5;
+  --accent: #55d4ee;
+  --accent-hover: #8de6f7;
+  --line: #293037;
+  --font: "Segoe UI Variable", "Segoe UI", Arial, sans-serif;
+  --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  --radius: 5px;
+  --max-width: 1256px;
+}
