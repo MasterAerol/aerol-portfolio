@@ -21,7 +21,7 @@ export const projects = [
       { label: 'Release v0.1.0', href: 'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0' },
     ],
     evidence: {
-      summary: '225 passed · 0 failed',
+      summary: '227 tests · 225 passed · 2 intentional skips',
       details: [
         'Validation snapshot: 227 tests executed; 225 passed; 0 failed; 2 intentional Windows symlink skips.',
         'CI coverage: Ubuntu Python 3.10, 3.12, and 3.14; Windows Python 3.12.',
@@ -31,7 +31,7 @@ export const projects = [
   {
     id: 'ai-operations-hub',
     name: 'AI Operations Automation Hub',
-    category: 'AI Automation / Operations',
+    category: 'Operations Automation / Workflow Systems',
     status: null,
     description: 'A full-stack operations workspace for requests, tasks, approvals, activity tracking, and workflow automation.',
     technologies: ['Supabase', 'Supabase Auth', 'PostgreSQL', 'Row Level Security (RLS)', 'n8n', 'Google Sheets', 'TypeScript', 'JavaScript', 'Git', 'GitHub', 'Automated testing', 'Browser testing'],

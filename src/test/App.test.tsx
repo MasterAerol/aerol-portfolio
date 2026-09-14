@@ -63,6 +63,8 @@ describe('portfolio foundation', () => {
     render(<App />)
     const work = document.getElementById('work')!
     expect(within(work).getAllByRole('article')).toHaveLength(4)
+    expect(within(work).getByText('227 tests · 225 passed · 2 intentional skips')).toBeVisible()
+    expect(within(work).getByText('Operations Automation / Workflow Systems')).toBeVisible()
     for (const project of projects) {
       const article = within(work).getByRole('article', { name: project.name })
       expect(within(article).getByText(project.description)).toBeInTheDocument()
@@ -94,7 +96,10 @@ describe('portfolio foundation', () => {
     render(<App />)
     expect(screen.getByRole('link', { name: profile.email })).toHaveAttribute('href', `mailto:${profile.email}`)
     expect(screen.getByRole('link', { name: 'GitHub / MasterAerol' })).toHaveAttribute('href', profile.github)
-    expect(screen.getByText(/I use ChatGPT and Codex heavily/)).toBeInTheDocument()
+    expect(screen.getByText('I use AI-assisted development for implementation, debugging, QA, and iteration while taking responsibility for requirements, product decisions, architecture, milestone planning, testing, Git/GitHub, and reviewing the generated work.')).toBeInTheDocument()
+    expect(document.getElementById('about')).not.toHaveTextContent(/heavily/)
+    expect(screen.getByText('AI-ASSISTED. HUMAN-REVIEWED.')).toBeInTheDocument()
+    expect(screen.getByText('AI Automation / AI Operations')).toBeInTheDocument()
     expect(document.body).not.toHaveTextContent(/LinkedIn|OpenAI API|Docker|Resend|Available on Play Store|Launching Soon/)
     expect(screen.getByText('Technical Virtual Assistant')).toBeInTheDocument()
     expect(screen.getByText('Operations Virtual Assistant')).toBeInTheDocument()

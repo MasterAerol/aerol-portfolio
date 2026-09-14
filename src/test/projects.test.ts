@@ -21,6 +21,7 @@ describe('verified project data', () => {
   it('preserves the supplied OpsCheck release, links, stack, and validation snapshot', () => {
     const project = projects[0]
     expect(project.status).toBe('Released — v0.1.0')
+    expect(project.evidence.summary).toBe('227 tests · 225 passed · 2 intentional skips')
     expect(project.links.map(link => link.href)).toEqual([
       'https://github.com/MasterAerol/opscheck-flow',
       'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0',
@@ -39,6 +40,8 @@ describe('verified project data', () => {
     expect(projects[1].technologies).toEqual(['Supabase', 'Supabase Auth', 'PostgreSQL', 'Row Level Security (RLS)', 'n8n', 'Google Sheets', 'TypeScript', 'JavaScript', 'Git', 'GitHub', 'Automated testing', 'Browser testing'])
     expect(projects[2].technologies).toEqual(['React', 'TypeScript', 'Vite', 'Hono', 'Cloudflare Workers', 'Cloudflare D1 / SQL', 'Git', 'GitHub'])
     expect(projects[2].name).toBe('PasaWise CSE')
+    expect(projects[1].name).toBe('AI Operations Automation Hub')
+    expect(projects[1].category).toBe('Operations Automation / Workflow Systems')
   })
 
   it('preserves private alpha status and the limited Kivo evidence', () => {

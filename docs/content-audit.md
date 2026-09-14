@@ -1,13 +1,13 @@
 # Milestone 1 content audit
 
-Source: the portfolio brief supplied by James Aerol Ilagan for this task. The portfolio represents those supplied facts; it does not assert that the underlying projects were retested during this milestone.
+Source: the portfolio brief supplied by James Aerol Ilagan and the approved Milestone 1.1 content corrections. The portfolio represents those supplied facts; it does not assert that the underlying projects were retested during this milestone.
 
 ## Identity and positioning
 
 - Public brand: AEROL.
 - Identity: James Aerol Ilagan.
 - Hero positioning: Software Developer · AI Automation · Operations.
-- AI assistance is explicitly disclosed: ChatGPT/Codex for implementation, debugging, QA, and iteration, alongside requirements, architecture, planning, review, and testing.
+- AI-assisted development is explicitly disclosed for implementation, debugging, QA, and iteration, alongside responsibility for requirements, product decisions, architecture, milestone planning, testing, Git/GitHub, and reviewing generated work. ChatGPT/Codex remain listed under Tools.
 - Technical and Operations VA roles appear in the opportunities section alongside development and automation.
 - GitHub and email match the supplied contact details. LinkedIn is omitted.
 
@@ -15,8 +15,8 @@ Source: the portfolio brief supplied by James Aerol Ilagan for this task. The po
 
 | Project | Content boundary | Audit |
 | --- | --- | --- |
-| OpsCheck Flow | Released — v0.1.0; supplied repository/release URLs; Python/SQLite and the verified engineering concepts. Snapshot is 227 executed, 225 passed, 0 failed, 2 intentional Windows symlink skips. CI matrix preserved. | PASS; no unsupported claims |
-| AI Operations Automation Hub | Supabase/Auth/PostgreSQL/RLS, n8n, Google Sheets, TypeScript/JavaScript, Git/GitHub, automated/browser testing; operations workflows and access controls. No supplied release status or URLs. | PASS; no unsupported claims |
+| OpsCheck Flow | Released — v0.1.0; supplied repository/release URLs; Python/SQLite and the verified engineering concepts. Snapshot is 227 executed, 225 passed, 0 failed, 2 intentional Windows symlink skips. CI matrix preserved. Compact proof: 227 tests · 225 passed · 2 intentional skips. | PASS; no unsupported claims |
+| AI Operations Automation Hub | Category: Operations Automation / Workflow Systems. Supabase/Auth/PostgreSQL/RLS, n8n, Google Sheets, TypeScript/JavaScript, Git/GitHub, automated/browser testing; operations workflows and access controls. No supplied release status or URLs. | PASS; no unsupported claims |
 | PasaWise CSE | React/TypeScript/Vite/Hono/Cloudflare Workers/D1/SQL/Git/GitHub; supplied CSE learning and recovery features. No CE project, learner results, invented release status, or URLs. | PASS; no unsupported claims |
 | Kivo — Life Organizer | Private Alpha; Android/Capacitor/APK/automated QA; supplied local-first life-admin concepts. 596 automated tests, with no invented pass count. Permanent package retained. | PASS; no unsupported claims |
 
