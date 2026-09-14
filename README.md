@@ -1,6 +1,6 @@
-# AEROL. — Portfolio foundation
+# AEROL. — Portfolio
 
-Milestone 1 of James Aerol Ilagan's portfolio. A responsive, accessible, single-page React / TypeScript / Vite application with a typed project content source and a CSS-only hero enhancement.
+James Aerol Ilagan's responsive, accessible React / TypeScript / Vite portfolio. Milestones 1 and 1.1 establish the approved content and design. Milestone 2 adds an isolated React Three Fiber identity scene to the hero.
 
 ## Run locally
 
@@ -23,38 +23,46 @@ npm run test:e2e
 git diff --check
 ```
 
-On a new machine, install the browser once with `npx playwright install chromium`. Browser tests start Vite automatically when no existing development server is available. Use `npm run test:watch` for interactive unit testing and `npm run preview` for the production build at http://127.0.0.1:4173.
+On a new machine, install Chromium once with `npx playwright install chromium`. Browser tests start Vite automatically when no development server is available. Use `npm run test:watch` for unit testing and `npm run preview` for the production build at http://127.0.0.1:4173. No lint script is configured.
 
-Vitest and Testing Library check content, landmarks, navigation, project data, resume availability, and labels. Playwright checks six viewport widths, keyboard navigation, menu behavior, long technology labels, reduced motion, 200% text enlargement, and axe accessibility rules. QA screenshots go to ignored `.qa/`; browser reports and traces are also ignored.
+Vitest checks content, landmarks, navigation, project data, resume availability, scene selection and failure behavior. Playwright checks six viewport widths, keyboard/menu behavior, technology wrapping, 200% text enlargement, axe accessibility, actual WebGL rendering, DPR, pause/resume, reduced motion, fallback paths, hover and touch scrolling. Browser tests use one worker because concurrent WebGL contexts compete for the same GPU/software renderer. Coverage and traces remain enabled.
 
-See [QA results](docs/milestone-1-qa.md) for the recorded outcome and scope.
+QA screenshots and measurements go to ignored `.qa/`; browser reports and traces are also ignored. Recorded results: [Milestone 1](docs/milestone-1-qa.md), [Milestone 1.1](docs/milestone-1.1-qa.md), [Milestone 2](docs/milestone-2-qa.md).
 
 ## Structure
 
-- `src/components/`: header, footer, icons, section heading, project card, and optional hero visual boundary.
-- `src/sections/`: Hero, About, Selected Work, What I Can Help With, How I Work, Skills, Open to Opportunities, Resume, Education, and Contact.
+- `src/components/`: header, footer, icons, section headings, project cards and hero visual boundary.
+- `src/components/hero/`: lazy scene, controlled canvas host, geometry, core, orbits, nodes, lighting and fallback.
+- `src/sections/`: the approved semantic HTML sections, including unchanged hero content.
 - `src/data/projects.ts`: the sole project-content source, validated by `Project` in `src/types/project.ts`.
-- `src/data/profile.ts` and `src/data/content.ts`: contact identity, navigation, capabilities, process, skills, opportunities, and resume tracks.
-- `src/styles/`: shared design tokens, global/responsive foundations, and section styles.
-- `src/test/`: unit and content tests.
-- `tests/`: browser and accessibility tests.
+- `src/data/profile.ts` and `src/data/content.ts`: identity, navigation, capabilities, process, skills, opportunities and resume tracks.
+- `src/styles/`: existing tokens/layout plus a separately scoped hero scene stylesheet.
+- `src/test/` and `tests/`: unit/content and browser/accessibility tests.
 
 ## Content policy
 
-All project claims derive from the user-supplied Milestone 1 brief; they are supplied evidence, not a new independent repository audit. See [content notes](docs/content-audit.md).
+Project claims derive from the supplied briefs; they are supplied evidence, not a new independent repository audit. See [content notes](docs/content-audit.md).
 
-Missing project links and unspecified statuses remain absent. Resume controls are disabled with explanatory text until real files are supplied. No resume downloads, LinkedIn URL, fabricated project screenshots, employment, customers, or performance metrics have been added.
+Missing project links and unspecified statuses remain absent. Resume controls are disabled until real files are supplied. No resume downloads, LinkedIn URL, fabricated screenshots, employment, customers or performance claims have been added.
 
 ## Design and accessibility
 
-Near-black background, graphite surfaces, white type, and a cyan accent. System fonts avoid external font requests. The layout uses semantic HTML, a skip link, native links/buttons/disclosures, visible focus outlines, and a mobile navigation disclosure. The mobile menu supports Escape, focus exit, outside clicks, breakpoint changes, and scrolling on short screens.
+The approved near-black, graphite, white and cyan design uses system fonts, semantic HTML, a skip link, native links/buttons/disclosures and visible focus outlines. The mobile menu supports Escape, focus exit, outside clicks, breakpoint changes and short screens.
 
-Core content is visible without animation. `prefers-reduced-motion` disables smooth scrolling and transitions. Essential text is separate from the decorative, pointer-inert, aria-hidden `HeroVisualBoundary`.
+Essential hero text and CTAs remain ordinary HTML. The canvas is decorative, hidden from assistive technology and excluded from keyboard navigation. On mobile it sits below the hero links, permits vertical touch scrolling, and uses reduced motion amplitudes without pointer parallax.
 
-## Milestone 2 boundary
+## Hero scene boundary
 
-`HeroVisualBoundary.tsx` is the integration point for a future optional `HeroScene`. Preserve the CSS fallback and semantic content outside that boundary. Any future 3D should load separately, honor reduced motion and device capability, and fail without hiding information.
+`HeroVisualBoundary` selects a static CSS fallback or lazy `HeroScene`. Reduced motion skips the animated scene entirely. Unsupported WebGL, initialization failure, drawing failure and context loss all restore the fallback without removing content.
 
-Three.js / React Three Fiber, 3D models, particles, scroll-linked cameras, heavy animation packages, backend/database, analytics, contact-form services, paid AI APIs, deployment, and domain purchases are outside Milestone 1.
+The scene uses local geometry only: a layered beveled graphite plate, extruded A, cyan dot, three thin elliptical paths and four project chips. Names come from the existing project records. The scene contains no navigation or new project claims.
 
-This repository is local-only on `milestone1/foundation`. No push, pull request, merge, or deployment is part of this milestone.
+The controlled R3F root catches asynchronous renderer setup failures, announces readiness only after a successful draw, owns cleanup, and pauses continuous rendering offscreen or in a hidden document. Pointer and animation updates use refs. DPR is fixed at 1 after profiling; shadows, textures, environment maps and postprocessing are absent.
+
+Runtime versions are pinned to Three 0.182.0, Fiber 9.7.0 and Drei 10.7.8. React/React DOM use compatible 19.2.8 instead of the foundation's 19.3.0: Fiber 9.7's peer range excludes 19.3. The matched React types are 19.2.18 / 19.2.7. Three 0.182 avoids a newer Clock deprecation while Fiber still uses that clock.
+
+## Deferred work
+
+Scroll-driven multi-section cameras, project-specific 3D storytelling, advanced scene transitions and deployment remain future milestones. No external models, postprocessing, physics integration, backend, analytics or contact-form services were added.
+
+Milestone 2 stays local on `milestone2/interactive-3d-hero`, branched from Milestone 1.1 commit `285fbfa`. No push, merge or deployment is part of this milestone.

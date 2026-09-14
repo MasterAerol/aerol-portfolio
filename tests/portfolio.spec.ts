@@ -55,14 +55,14 @@ for (const width of widths) {
       for (const grid of layout.grids) {
         expect(grid.columns, grid.selector).toBe(grid.selector === '.process-grid' && width > 380 ? 2 : 1)
       }
-      await expect(page.locator('.hero-visual')).toBeHidden()
+      await expect(page.locator('.hero-visual')).toBeVisible()
       for (const card of await page.locator('.project-card').all()) {
         expect((await card.boundingBox())!.width).toBeGreaterThanOrEqual(width - 42)
       }
     }
-    await mkdir('.qa/milestone-1.1', { recursive: true })
-    await page.screenshot({ path: `.qa/milestone-1.1/closed-${width}.png`, fullPage: true, animations: 'disabled' })
-    await writeFile(`.qa/milestone-1.1/layout-${width}.json`, JSON.stringify(layout, null, 2))
+    await mkdir('.qa/milestone-2/regression', { recursive: true })
+    await page.screenshot({ path: `.qa/milestone-2/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
+    await writeFile(`.qa/milestone-2/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
 
     const nav = page.getByRole('navigation', { name: 'Primary navigation' })
     if (width < 768) {
@@ -76,7 +76,7 @@ for (const width of widths) {
         expect(bounds.x + bounds.width).toBeLessThanOrEqual(width)
         await expect(link).toBeInViewport()
       }
-      await page.screenshot({ path: `.qa/milestone-1.1/menu-${width}.png`, animations: 'disabled' })
+      await page.screenshot({ path: `.qa/milestone-2/regression/menu-${width}.png`, animations: 'disabled' })
     }
     await nav.getByRole('link', { name: 'Work', exact: true }).click()
     await expect(page).toHaveURL(/#work$/)
