@@ -18,11 +18,11 @@ describe('final published-content guardrails', () => {
     ])
   })
 
-  for (const path of ['/', '/resume/software', '/resume/operations']) {
+  for (const path of ['/', '/resume/software', '/resume/operations', '/resume/general-va']) {
     it(`keeps all rendered ${path} content and links within verified claims`, () => {
       render(<ResumeRouter pathname={path} />)
       expect(document.body).not.toHaveTextContent(forbiddenClaims)
-      expect(document.querySelectorAll(path === '/' ? '#work article' : '.resume-project')).toHaveLength(4)
+      expect(document.querySelectorAll(path === '/' ? '#work article' : '.resume-project')).toHaveLength(path === '/resume/general-va' ? 2 : 4)
       expect(document.querySelector('a[href$=".pdf"], [download]')).toBeNull()
       for (const link of document.querySelectorAll<HTMLAnchorElement>('a')) {
         const href = link.getAttribute('href')

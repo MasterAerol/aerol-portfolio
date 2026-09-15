@@ -79,11 +79,11 @@ describe('portfolio foundation', () => {
     }
   })
 
-  it('links both HTML resume tracks without fake PDF downloads', () => {
+  it('links all three HTML resume tracks without fake PDF downloads', () => {
     render(<App />)
     const resume = document.getElementById('resume')!
     const links = within(resume).getAllByRole('link', { name: /View Resume/ })
-    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations'])
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations', '/resume/general-va'])
     for (const link of links) expect(link).toHaveAccessibleDescription('Print / Save as PDF from the resume page.')
     expect(resume.querySelector('button')).toBeNull()
     expect(document.querySelector('[download], a[href$=".pdf"]')).toBeNull()

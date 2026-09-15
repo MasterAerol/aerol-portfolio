@@ -5,7 +5,7 @@ import { resumeTracks } from '../data/content'
 
 export function Resume() {
   return <section id="resume" className="section container" aria-labelledby="resume-title">
-    <SectionHeading number="07" label="RESUME" title="Two paths. The same thoughtful approach." id="resume-title" />
+    <SectionHeading number="07" label="RESUME" title="Three paths. The same thoughtful approach." id="resume-title" />
     <div className="resume-summary">
       <div><h3>Focus</h3><p>Software Development · Automation · Operations Systems</p></div>
       <div><h3>Selected Project Experience</h3><ul>{projects.map(project => <li key={project.id}>{project.name}</li>)}</ul></div>

@@ -10,6 +10,7 @@ const publicLinks = [
 const titles = {
   '/': 'James Aerol Ilagan — Software, Automation & Operations',
   '/resume/software': 'James Aerol Ilagan — Software Developer Resume',
+  '/resume/general-va': 'James Aerol Ilagan — General VA & Data Entry Resume',
   '/resume/operations': 'James Aerol Ilagan — AI Operations & Technical VA Resume',
 }
 for (const [route, title] of Object.entries(titles)) {
@@ -50,7 +51,7 @@ for (const [route, title] of Object.entries(titles)) {
       expect(link.label).toBeTruthy()
       expect(link.href).toBeTruthy()
       expect(link.href).not.toBe('#')
-      if (!link.href!.startsWith('#')) expect([...publicLinks, '/resume/software', '/resume/operations', '/#resume']).toContain(link.href)
+      if (!link.href!.startsWith('#')) expect([...publicLinks, '/resume/software', '/resume/operations', '/resume/general-va', '/#resume']).toContain(link.href)
     }
     await expect(page.locator('[download], a[href$=".pdf"], link[rel="canonical"], meta[property="og:url"]')).toHaveCount(0)
     // Verify real assets retain their MIME types instead of receiving SPA HTML.

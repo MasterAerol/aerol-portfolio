@@ -32,16 +32,22 @@ export function ResumePage({ resume }: { resume: ResumeContent }) {
       </section>
       <section className="resume-section" aria-labelledby="resume-projects-heading">
         <h2 id="resume-projects-heading">Selected Project Experience</h2>
-        <div className="resume-projects">{resume.projects.map((project, index) => <article className={`resume-project ${index === 2 ? 'resume-next-page' : ''}`} key={project.id} aria-labelledby={`resume-${project.id}`}>
+        <div className="resume-projects">{resume.projects.map((project, index) => {
+          const experience = resume.variant === 'general-va'
+            ? resume.projectExperience[project.id]
+            : { category: project.resume.category, bullets: project.resume[resume.variant] }
+          return <article className={`resume-project ${index === 2 ? 'resume-next-page' : ''}`} key={project.id} aria-labelledby={`resume-${project.id}`}>
           {index === 2 && <p className="print-only resume-continuation">{resume.identity.name} · {resume.headline} · continued</p>}
           <div className="resume-project-heading"><h3 id={`resume-${project.id}`}>{project.name}</h3><p>{project.status}{project.statusDetail && ` / ${project.statusDetail}`}</p></div>
-          <p className="resume-project-category">{project.resume.category}</p>
-          <ul>{project.resume[resume.variant].map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
+          <p className="resume-project-category">{experience.category}</p>
+          <ul>{experience.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
           <p className="resume-evidence"><strong>Validation:</strong> {project.evidence.metrics ? project.evidence.metrics.map(metric => `${metric.value} ${metric.label}`).join(' · ') : project.evidence.summary}</p>
           {project.links.length > 0 && <div className="resume-project-links">{project.links.slice(0, 1).map(link => <a key={link.href} href={link.href} aria-label={`${project.name} Repository: ${link.href.replace('https://', '')}`}><span>Repository: </span>{link.href.replace('https://', '')}</a>)}</div>}
-        </article>)}</div>
+        </article>
+        })}</div>
       </section>
-      <section className="resume-section" aria-labelledby="resume-skills-heading">
+      <section className={resume.variant === 'general-va' ? 'resume-section resume-next-page' : 'resume-section'} aria-labelledby="resume-skills-heading">
+        {resume.variant === 'general-va' && <p className="print-only resume-continuation">{resume.identity.name} · {resume.headline} · continued</p>}
         <h2 id="resume-skills-heading">Skills</h2>
         <dl className="resume-skills">{resume.skills.map(group => <div key={group.name}><dt>{group.name}</dt><dd>{group.items.join(' · ')}</dd></div>)}</dl>
         <p className="resume-disclosure">{resume.disclosure}</p>

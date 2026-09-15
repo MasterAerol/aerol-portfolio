@@ -16,7 +16,7 @@ describe('approved public contact channels', () => {
     expect(new URL(profile.linkedin).search).toBe('')
   })
 
-  for (const route of ['/', '/resume/software', '/resume/operations']) {
+  for (const route of ['/', '/resume/software', '/resume/operations', '/resume/general-va']) {
     it(`keeps ${route} contact links accessible, current, and free of tracking`, () => {
       render(<ResumeRouter pathname={route} />)
       expect(document.body).toHaveTextContent(businessEmail)

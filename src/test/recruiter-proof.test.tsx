@@ -51,7 +51,7 @@ describe('recruiter proof and readiness', () => {
     expect(document.querySelector('#work img, #work video, .media-gallery, [download], a[href$=".pdf"]')).toBeNull()
     const resume = within(document.getElementById('resume')!)
     const links = resume.getAllByRole('link', { name: /View Resume/ })
-    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations'])
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations', '/resume/general-va'])
     expect(resume.queryByRole('button')).toBeNull()
   })
 

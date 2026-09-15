@@ -62,7 +62,7 @@ details[open] .details-plus { transform: rotate(45deg); }
 .opportunity-list li { display: flex; gap: 16px; border-bottom: 1px solid var(--line); padding-block: 16px; font-size: .9375rem; }
 .opportunity-list li:first-child { padding-top: 0; }
 .opportunity-list li span { color: #7197a5; }
-.resume-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 42px; }
+.resume-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 42px; }
 .resume-card { padding: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: #101417; }
 .resume-card > .icon { color: #91a9b4; width: 26px; height: 26px; margin-bottom: 24px; }
 .resume-card h3 { font-size: 1.125rem; line-height: 1.4; font-weight: 550; }
@@ -93,6 +93,7 @@ details[open] .details-plus { transform: rotate(45deg); }
 .back-to-top { display: inline-flex; align-items: center; gap: 12px; font-size: .8125rem; color: var(--muted); min-height: 44px; }
 .back-to-top:hover { color: var(--accent); }
 @media (max-width: 1100px) {
+  .resume-grid { grid-template-columns: 1fr; }
   .project-card { padding: 26px; }
   .project-meta { margin-bottom: 26px; }
   .status-badge { margin-left: 26px; }

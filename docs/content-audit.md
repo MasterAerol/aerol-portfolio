@@ -30,9 +30,14 @@ No OpenAI API, Docker, Resend, AWS, Kubernetes, paid model processing, planned-t
 
 ## Resume and education
 
-No approved project screenshots or final resume PDFs exist. Portfolio QA screenshots are not project media. Both resume cards now link to truthful HTML views with browser printing; no final PDF download is linked. Milestone 5 verifies Python Programming Essentials from DICT as completed 40-hour training in December 2023. No certificate ID is invented; the incomplete Udemy course is omitted. The supplied Civil Engineering education appears in its own secondary section and does not replace the software/automation identity. Both full resume views explicitly use Selected Project Experience and Target role labels, without employment claims. Identity, project objects/proof, education, and completed training are shared sources; only emphasis and project order differ.
+No approved project screenshots or final resume PDFs exist. Portfolio QA screenshots are not project media. All three resume cards now link to truthful HTML views with browser printing; no final PDF download is linked. Milestone 5 verifies Python Programming Essentials from DICT as completed 40-hour training in December 2023. No certificate ID is invented; the incomplete Udemy course is omitted. The supplied Civil Engineering education appears in its own secondary section and does not replace the software/automation identity. All three full resume views explicitly use Selected Project Experience and Target role labels, without employment claims. Identity, project objects/proof, education, and completed training are shared sources; only emphasis and project order differ.
 
 
 ## Milestone 6 final audit
 
 The source, rendered portfolio and both resumes were checked again against the Milestone 6 brief. No new claims or identity changes were needed. Forbidden terms remain limited to absence assertions and audit documentation. The three public GitHub destinations returned HTTP 200; the supplied release is published. Secret/privacy, metadata and complete QA details are recorded in [Milestone 6](milestone-6-qa.md).
+
+
+## General VA expansion
+
+The General VA / Data Entry / Admin resume uses only AI Operations Automation Hub and PasaWise CSE, labeled independent/project-based work and Personal Project. The approved brief supplies its administrative/data, AI/productivity, workflow and technical-foundation skills, including Google Drive. These additions are limited to the new resume; the existing portfolio skills and project claims are unchanged. General VA, Data Entry / Administrative Support, and Research / Documentation Support are opportunity targets, not employment history. No formal VA employment, client work, AI processing, or unpracticed administrative skills are claimed. The Software and AI Operations resume documents retain their approved content.
