@@ -1,4 +1,5 @@
 import { SectionHeading } from '../components/SectionHeading'
+import { RevealHeading } from '../components/Reveal'
 import { Icon } from '../components/Icon'
 import { capabilities } from '../data/content'
 
@@ -8,7 +9,7 @@ export function Capabilities() {
     <div className="capability-grid">
       {capabilities.map(capability => <article className="capability" key={capability.title}>
         <div className="capability-icon"><Icon name={capability.icon} /></div>
-        <h3>{capability.title}</h3>
+        <RevealHeading as="h3">{capability.title}</RevealHeading>
         <p>{capability.description}</p>
         <ul>{capability.items.map(item => <li key={item}>{item}</li>)}</ul>
       </article>)}

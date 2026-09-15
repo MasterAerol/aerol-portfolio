@@ -83,10 +83,6 @@
 .organizer-categories { margin-top: 24px; }
 .organizer-categories > p { color: #a7bbc5; font-size: .8125rem; }
 .organizer-categories ul { display: flex; flex-wrap: wrap; gap: 7px 15px; padding: 0; list-style: none; margin: 10px 0 0; color: #b6c5cc; font-size: .8125rem; }
-@media (prefers-reduced-motion: no-preference) {
-  .project-story[data-entered="true"] { animation: project-enter 480ms ease-out both; }
-  @keyframes project-enter { from { opacity: .72; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-}
 @media (max-width: 1023px) {
   .project-story, .project-story.story-reversed { grid-template-columns: 1fr; grid-template-areas: "intro" "visual" "body"; gap: 32px; }
   .project-visual { width: 100%; }

@@ -1,4 +1,4 @@
-type IconName = 'arrow-up-right' | 'arrow-right' | 'arrow-down' | 'code' | 'workflow' | 'layers' | 'file' | 'mail' | 'github'
+type IconName = 'arrow-up-right' | 'arrow-right' | 'arrow-down' | 'code' | 'workflow' | 'layers' | 'file' | 'mail' | 'github' | 'linkedin'
 
 const paths: Record<IconName, string[]> = {
   'arrow-up-right': ['M7 17 17 7', 'M7 7h10v10'],
@@ -9,6 +9,7 @@ const paths: Record<IconName, string[]> = {
   layers: ['m12 3 10 6-10 6L2 9z', 'm2 13 10 6 10-6', 'm2 17 10 6 10-6'],
   file: ['M14 2H5v20h14V7z', 'M14 2v6h5', 'M8 12h8', 'M8 16h6'],
   mail: ['M3 5h18v14H3z', 'm3 5 9 8 9-8'],
+  linkedin: ['M3 9h4v12H3z', 'M3 3h4v3H3z', 'M11 21V9h4v2c1-2 6-3 6 3v7h-4v-7c0-2-2-2-2 0v7z'],
   github: ['M9 19c-4 1-4-2-6-2', 'M9 22v-4c0-1 .2-1.6-.6-2C5 15.5 3 14 3 10a6 6 0 0 1 1.5-4C4 4.5 4 3 5 2c2 0 3 1 4 1a14 14 0 0 1 6 0c1 0 2-1 4-1 1 1 1 2.5.5 4a6 6 0 0 1 1.5 4c0 4-2 5.5-5.4 6-.8.4-.6 1-.6 2v4'],
 }
 

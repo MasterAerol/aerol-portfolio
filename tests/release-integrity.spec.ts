@@ -2,9 +2,10 @@ import { expect, test } from '@playwright/test'
 
 const publicLinks = [
   'https://github.com/MasterAerol',
+  'https://www.linkedin.com/in/aerol-ilagan-762830435',
   'https://github.com/MasterAerol/opscheck-flow',
   'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0',
-  'mailto:aerolilagan2002@gmail.com',
+  'mailto:aerolilagan00@gmail.com',
 ]
 const titles = {
   '/': 'James Aerol Ilagan — Software, Automation & Operations',
@@ -51,7 +52,7 @@ for (const [route, title] of Object.entries(titles)) {
       expect(link.href).not.toBe('#')
       if (!link.href!.startsWith('#')) expect([...publicLinks, '/resume/software', '/resume/operations', '/#resume']).toContain(link.href)
     }
-    await expect(page.locator('[download], a[href*="linkedin"], a[href$=".pdf"], link[rel="canonical"], meta[property="og:url"]')).toHaveCount(0)
+    await expect(page.locator('[download], a[href$=".pdf"], link[rel="canonical"], meta[property="og:url"]')).toHaveCount(0)
     // Verify real assets retain their MIME types instead of receiving SPA HTML.
     const assets = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(nodes =>
       nodes.map(node => ({

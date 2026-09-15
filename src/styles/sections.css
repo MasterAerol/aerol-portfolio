@@ -83,7 +83,8 @@ details[open] .details-plus { transform: rotate(45deg); }
 .contact-bottom { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: 42px; flex-wrap: wrap; }
 .contact-email { font-size: clamp(1.0625rem, 2vw, 1.65rem); letter-spacing: -.025em; display: inline-flex; align-items: center; gap: 18px; min-height: 44px; }
 .contact-email .icon { width: 26px; height: 26px; }
-.contact-github { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); font-size: .875rem; min-height: 44px; }
+.contact-socials { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 24px; }
+.contact-github, .contact-linkedin { display: inline-flex; align-items: center; gap: 12px; color: var(--muted); font-size: .875rem; min-height: 44px; }
 .contact-bottom a:hover { color: var(--accent); }
 .site-footer { border-top: 1px solid var(--line); }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 100px; }

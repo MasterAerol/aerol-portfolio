@@ -3,8 +3,9 @@ export const profile = {
   brand: 'AEROL.',
   positioning: 'Software Developer · AI Automation · Operations',
   introduction: 'I build reliable software, automate repetitive work, and turn ideas into working products.',
-  email: 'aerolilagan2002@gmail.com',
+  email: 'aerolilagan00@gmail.com',
   github: 'https://github.com/MasterAerol',
+  linkedin: 'https://www.linkedin.com/in/aerol-ilagan-762830435',
 } as const
 
 export const navigation = [

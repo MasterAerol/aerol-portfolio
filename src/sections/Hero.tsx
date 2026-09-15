@@ -16,6 +16,7 @@ export function Hero() {
       </div>
       <div className="hero-links">
         <a href={profile.github}>GitHub<Icon name="arrow-up-right" /></a>
+        <a href={profile.linkedin} aria-label="LinkedIn — Aerol Ilagan"><Icon name="linkedin" />LinkedIn<Icon name="arrow-up-right" /></a>
         <a href="#contact">Contact<Icon name="arrow-up-right" /></a>
       </div>
     </div>

@@ -69,11 +69,11 @@ describe('recruiter proof and readiness', () => {
     render(<Contact />)
     fireEvent.click(screen.getByRole('button', { name: 'Copy email' }))
     await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Email copied.'))
-    expect(writeText).toHaveBeenCalledWith('aerolilagan2002@gmail.com')
+    expect(writeText).toHaveBeenCalledWith('aerolilagan00@gmail.com')
     expect(alert).not.toHaveBeenCalled()
     expect(screen.getByRole('link', { name: profile.email })).toHaveAttribute('href', `mailto:${profile.email}`)
     expect(screen.getByRole('link', { name: 'GitHub / MasterAerol' })).toHaveAttribute('href', profile.github)
-    expect(document.getElementById('contact')).not.toHaveTextContent(/LinkedIn/)
+    expect(screen.getByRole('link', { name: 'LinkedIn — Aerol Ilagan' })).toHaveAttribute('href', profile.linkedin)
   })
 
   for (const state of ['unavailable', 'rejected']) {
@@ -99,7 +99,7 @@ describe('recruiter proof and readiness', () => {
     const person = JSON.parse(html.querySelector('script[type="application/ld+json"]')!.textContent!)
     expect(person).toEqual({
       '@context': 'https://schema.org', '@type': 'Person', name: profile.name,
-      sameAs: [profile.github],
+      sameAs: [profile.github, profile.linkedin],
       knowsAbout: ['Software Development', 'Workflow Automation', 'Python', 'TypeScript', 'React', 'Supabase', 'Cloudflare Workers'],
     })
     const favicon = html.querySelector('link[rel="icon"]')?.getAttribute('href')

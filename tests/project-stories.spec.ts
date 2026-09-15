@@ -93,21 +93,22 @@ test('entry reveals occur once and leave project information visible', async ({ 
     const counts: Record<string, number> = {}
     Object.assign(window, { projectEntries: counts })
     document.addEventListener('animationstart', event => {
-      if (event.animationName === 'project-enter') {
-        const id = (event.target as HTMLElement).getAttribute('aria-labelledby')!
+      if (event.animationName === 'text-reveal' && (event.target as HTMLElement).matches('.story-narrative h4')) {
+        const id = (event.target as HTMLElement).closest('article')!.getAttribute('aria-labelledby')!
         counts[id] = (counts[id] ?? 0) + 1
       }
     })
   })
   await page.goto('/')
   const story = page.locator('.project-ai-operations-hub')
-  await story.scrollIntoViewIfNeeded()
-  await expect(story).toHaveAttribute('data-entered', 'true')
-  await page.waitForTimeout(550)
+  const headline = story.locator('.story-narrative h4')
+  await headline.scrollIntoViewIfNeeded()
+  await expect(headline).toHaveAttribute('data-reveal-state', 'complete')
   await page.locator('#contact').scrollIntoViewIfNeeded()
-  await story.scrollIntoViewIfNeeded()
+  await headline.scrollIntoViewIfNeeded()
   const count = await page.evaluate(() => (window as unknown as { projectEntries: Record<string, number> }).projectEntries['ai-operations-hub-title'])
   expect(count).toBe(1)
+  expect(await story.evaluate(node => getComputedStyle(node).animationName)).toBe('none')
   expect(await story.evaluate(node => getComputedStyle(node).opacity)).toBe('1')
 })
 

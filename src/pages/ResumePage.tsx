@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Icon } from '../components/Icon'
 import type { ResumeContent } from '../types/resume'
 
 export function ResumePage({ resume }: { resume: ResumeContent }) {
@@ -22,6 +23,7 @@ export function ResumePage({ resume }: { resume: ResumeContent }) {
         <div className="resume-contact">
           <a href={`mailto:${resume.identity.email}`} aria-label={`Email ${resume.identity.name}: ${resume.identity.email}`}>{resume.identity.email}</a>
           <a href={resume.identity.github} aria-label={`GitHub profile: ${resume.identity.github.replace('https://', '')}`}>{resume.identity.github.replace('https://', '')}</a>
+          <a href={resume.identity.linkedin} aria-label="LinkedIn — Aerol Ilagan"><Icon name="linkedin" /><span>LinkedIn — Aerol Ilagan</span></a>
         </div>
       </header>
       <section className="resume-section" aria-labelledby="resume-summary-heading">
