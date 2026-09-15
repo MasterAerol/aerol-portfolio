@@ -42,7 +42,7 @@ button, a { touch-action: manipulation; }
 .button-primary:hover { background: var(--accent-hover); }
 .button-secondary { border-color: #465059; background: #111518; }
 .button-secondary:hover { border-color: var(--muted); background: #1a2025; }
-.hero-links { display: flex; gap: 26px; margin-top: 18px; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 4px 26px; margin-top: 18px; }
 .hero-links a { display: inline-flex; align-items: center; gap: 7px; font-size: .875rem; min-height: 44px; color: var(--muted); }
 .hero-links a:hover { color: var(--accent); }
 .hero-links .icon { width: 15px; }

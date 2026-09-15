@@ -9,7 +9,7 @@ Source: the portfolio brief supplied by James Aerol Ilagan, the approved Milesto
 - Hero positioning: Software Developer · AI Automation · Operations.
 - AI-assisted development is explicitly disclosed for implementation, debugging, QA, and iteration, alongside responsibility for requirements, product decisions, architecture, milestone planning, testing, Git/GitHub, and reviewing generated work. ChatGPT/Codex remain listed under Tools.
 - Technical and Operations VA roles appear in the opportunities section alongside development and automation.
-- GitHub and email match the supplied contact details. LinkedIn is omitted.
+- Public contact uses the approved business email, aerolilagan00@gmail.com. GitHub and LinkedIn link to the supplied public profiles; LinkedIn uses its canonical URL without tracking parameters.
 
 ## Project checks
 

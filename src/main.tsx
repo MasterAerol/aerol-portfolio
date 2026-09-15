@@ -8,5 +8,6 @@ import './styles/hero-scene.css'
 import './styles/project-stories.css'
 import './styles/recruiter-proof.css'
 import './styles/resume-pages.css'
+import './styles/reveals.css'
 
 createRoot(document.getElementById('root')!).render(<StrictMode><ResumeRouter /></StrictMode>)

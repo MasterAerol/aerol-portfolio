@@ -97,7 +97,7 @@ describe('portfolio foundation', () => {
     expect(document.getElementById('about')).not.toHaveTextContent(/heavily/)
     expect(screen.getByText('AI-ASSISTED. HUMAN-REVIEWED.')).toBeInTheDocument()
     expect(screen.getByText('AI Automation / AI Operations')).toBeInTheDocument()
-    expect(document.body).not.toHaveTextContent(/LinkedIn|OpenAI API|Docker|Resend|Available on Play Store|Launching Soon/)
+    expect(document.body).not.toHaveTextContent(/OpenAI API|Docker|Resend|Available on Play Store|Launching Soon/)
     expect(screen.getByText('Technical Virtual Assistant')).toBeInTheDocument()
     expect(screen.getByText('Operations Virtual Assistant')).toBeInTheDocument()
   })

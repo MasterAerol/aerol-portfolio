@@ -94,7 +94,7 @@ for (const width of widths) {
     const clippedTechnology = await page.locator('.technology-list li').evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.clientWidth + 1).map(node => node.textContent))
     expect(clippedTechnology).toEqual([])
     await expect(page.getByRole('link', { name: 'OpsCheck Flow — View Repository' })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
-    await expect(page.getByRole('link', { name: 'aerolilagan2002@gmail.com' })).toHaveAttribute('href', 'mailto:aerolilagan2002@gmail.com')
+    await expect(page.getByRole('link', { name: 'aerolilagan00@gmail.com' })).toHaveAttribute('href', 'mailto:aerolilagan00@gmail.com')
     await expect(page.getByRole('link', { name: 'GitHub / MasterAerol' })).toHaveAttribute('href', 'https://github.com/MasterAerol')
     expect(errors).toEqual([])
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))

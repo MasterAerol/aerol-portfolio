@@ -23,7 +23,7 @@ describe('final published-content guardrails', () => {
       render(<ResumeRouter pathname={path} />)
       expect(document.body).not.toHaveTextContent(forbiddenClaims)
       expect(document.querySelectorAll(path === '/' ? '#work article' : '.resume-project')).toHaveLength(4)
-      expect(document.querySelector('a[href*="linkedin"], a[href$=".pdf"], [download]')).toBeNull()
+      expect(document.querySelector('a[href$=".pdf"], [download]')).toBeNull()
       for (const link of document.querySelectorAll<HTMLAnchorElement>('a')) {
         const href = link.getAttribute('href')
         expect(href).toBeTruthy()

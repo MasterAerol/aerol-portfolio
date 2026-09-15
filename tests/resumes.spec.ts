@@ -20,6 +20,8 @@ for (const variant of ['software', 'operations'] as const) {
       await expect(page.locator('.resume-project h3')).toHaveText(orders[variant])
       await expect(page.locator('canvas, .hero-visual, .site-header, [download], a[href$=".pdf"]')).toHaveCount(0)
       await expect(page.getByRole('link', { name: /OpsCheck Flow Repository:/ })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
+      await expect(page.getByRole('link', { name: /Email James Aerol/ })).toHaveAttribute('href', 'mailto:aerolilagan00@gmail.com')
+      await expect(page.getByRole('link', { name: 'LinkedIn — Aerol Ilagan' })).toHaveAttribute('href', 'https://www.linkedin.com/in/aerol-ilagan-762830435')
       const clipped = await page.locator('p, li, h1, h2, h3, a, button, dd').evaluateAll(nodes => nodes.filter(el => el.clientWidth && el.scrollWidth > el.clientWidth + 1).map(el => el.textContent))
       expect(clipped).toEqual([])
       expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0)
