@@ -1,5 +1,7 @@
 # Milestone 2 — Interactive 3D hero QA
 
+> Current status: the portfolio is deployed at [the verified production URL](https://aerol-portfolio.master-course.workers.dev/), now used by canonical, Open Graph URL and Person URL metadata. Deployment/metadata deferrals below describe this historical milestone, not current availability. No published v1.0.0 GitHub Release is claimed.
+
 Date: 2026-09-15. Starting branch: `milestone1/foundation`. Baseline: `285fbfa` (Milestone 1.1), following `5d320f7` (Milestone 1). The starting working tree was clean. Implementation branch: `milestone2/interactive-3d-hero`.
 
 ## Result and scope

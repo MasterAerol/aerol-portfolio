@@ -1,5 +1,7 @@
 # Milestone 6 — Production hardening and final QA
 
+> Current status: the portfolio is deployed at [the verified production URL](https://aerol-portfolio.master-course.workers.dev/), now used by canonical, Open Graph URL and Person URL metadata. Deployment/metadata deferrals below describe this historical milestone, not current availability. No published v1.0.0 GitHub Release is claimed.
+
 Date: 2026-09-15. Starting branch: `milestone5/dual-resume`, commit `6548855`. Working branch: `milestone6/production-hardening`.
 
 ## Baseline gate

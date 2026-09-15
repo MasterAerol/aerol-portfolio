@@ -47,6 +47,7 @@ describe('approved public contact channels', () => {
     expect(fallback.innerHTML).not.toContain(formerEmail)
     expect(fallback.innerHTML).toContain(linkedin)
     const person = JSON.parse(html.querySelector('script[type="application/ld+json"]')!.textContent!)
+    expect(person.url).toBe('https://aerol-portfolio.master-course.workers.dev/')
     expect(person.sameAs).toEqual([profile.github, linkedin])
   })
 })
