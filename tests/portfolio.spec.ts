@@ -1,8 +1,9 @@
+import { auditWidths } from './viewports'
 import { test, expect } from '@playwright/test'
 import { mkdir, writeFile } from 'node:fs/promises'
 import AxeBuilder from '@axe-core/playwright'
 
-const widths = [1440, 1024, 768, 430, 390, 360]
+const widths = auditWidths
 
 for (const width of widths) {
   test(`${width}px: readable sections, navigation, expanded content, and no overflow`, async ({ page }) => {
@@ -62,9 +63,9 @@ for (const width of widths) {
         expect((await card.boundingBox())!.width).toBeGreaterThanOrEqual(width - 42)
       }
     }
-    await mkdir('.qa/milestone-5/regression', { recursive: true })
-    await page.screenshot({ path: `.qa/milestone-5/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
-    await writeFile(`.qa/milestone-5/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
+    await mkdir('.qa/milestone-6/regression', { recursive: true })
+    await page.screenshot({ path: `.qa/milestone-6/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
+    await writeFile(`.qa/milestone-6/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
 
     const nav = page.getByRole('navigation', { name: 'Primary navigation' })
     if (width < 768) {
@@ -78,7 +79,7 @@ for (const width of widths) {
         expect(bounds.x + bounds.width).toBeLessThanOrEqual(width)
         await expect(link).toBeInViewport()
       }
-      await page.screenshot({ path: `.qa/milestone-5/regression/menu-${width}.png`, animations: 'disabled' })
+      await page.screenshot({ path: `.qa/milestone-6/regression/menu-${width}.png`, animations: 'disabled' })
     }
     await nav.getByRole('link', { name: 'Work', exact: true }).click()
     await expect(page).toHaveURL(/#work$/)

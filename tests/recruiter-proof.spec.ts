@@ -1,6 +1,7 @@
+import { auditWidths } from './viewports'
 import { test, expect } from '@playwright/test'
 
-for (const width of [1440, 1024, 768, 430, 390, 360]) {
+for (const width of auditWidths) {
   test(`${width}px: proof, statuses, resume and copy-email remain readable and usable`, async ({ page }) => {
     await page.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async (text: string) => { Object.assign(window, { copiedEmail: text }) } } }))
     await page.setViewportSize({ width, height: 900 })

@@ -1,3 +1,4 @@
+import { auditWidths } from './viewports'
 import { test, expect } from '@playwright/test'
 import type { Locator, Page } from '@playwright/test'
 
@@ -11,10 +12,12 @@ async function activate(page: Page, button: Locator) {
   await expect(page.locator(`[id="${panelId}"]`)).toBeVisible()
   const style = await button.evaluate(node => ({ outline: getComputedStyle(node).outlineStyle, width: getComputedStyle(node).outlineWidth }))
   expect(style).toEqual({ outline: 'solid', width: '2px' })
-  expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(44)
+  // Translated elements at long-page offsets can report 43.99994px for a 44px target.
+  const height = (await button.boundingBox())!.height
+  expect(Number(height.toFixed(3))).toBeGreaterThanOrEqual(44)
 }
 
-for (const width of [1440, 1024, 768, 430, 390, 360]) {
+for (const width of auditWidths) {
   test(`${width}px: all project diagrams, selection states and case-study layout`, async ({ page }) => {
     const errors: string[] = []
     page.on('pageerror', error => errors.push(error.message))

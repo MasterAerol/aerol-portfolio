@@ -1,6 +1,6 @@
 # AEROL. — Portfolio
 
-James Aerol Ilagan's responsive, accessible React / TypeScript / Vite portfolio. Milestones 1 and 1.1 establish the approved content and design. Milestone 2 adds an isolated React Three Fiber identity scene to the hero. Milestone 3 turns Selected Work into four interactive case studies built with HTML, CSS, and SVG. Milestone 4 adds reusable proof/status presentation, recruiter context, copy-email interaction, and truthful professional metadata. Milestone 5 adds two targeted, accessible HTML resume views with A4 print styling.
+James Aerol Ilagan's responsive, accessible React / TypeScript / Vite portfolio. Milestones 1 and 1.1 establish the approved content and design. Milestone 2 adds an isolated React Three Fiber identity scene to the hero. Milestone 3 turns Selected Work into four interactive case studies built with HTML, CSS, and SVG. Milestone 4 adds reusable proof/status presentation, recruiter context, copy-email interaction, and truthful professional metadata. Milestone 5 adds two targeted, accessible HTML resume views with A4 print styling. Milestone 6 hardens keyboard focus visibility and adds a complete production regression gate.
 
 ## Run locally
 
@@ -20,14 +20,17 @@ npm test
 npm run typecheck
 npm run build
 npm run test:e2e
+npm run test:e2e:production
+npm ls
+npm audit
 git diff --check
 ```
 
-On a new machine, install Chromium once with `npx playwright install chromium`. Browser tests start Vite automatically when no development server is available. Use `npm run test:watch` for unit testing and `npm run preview` for the production build at http://127.0.0.1:4173. No lint script is configured.
+On a new machine, install Chromium once with `npx playwright install chromium`. Browser tests start Vite automatically when no development server is available. The production command first builds, then runs the full suite against the static preview at port 4173; it starts that preview if needed. Use `npm run test:watch` for unit testing and `npm run preview` for the production build at http://127.0.0.1:4173. No lint script is configured.
 
-Vitest checks content, landmarks, navigation, project data, resume routes/shared facts, print controls, scene selection and failure behavior. Playwright checks six viewport widths, keyboard/menu behavior, technology wrapping, 200% text enlargement, axe accessibility, actual WebGL rendering, DPR, pause/resume, reduced motion, fallback paths, hover and touch scrolling. Browser tests use one worker because concurrent WebGL contexts compete for the same GPU/software renderer. Existing test coverage is retained; traces are retained on failure.
+Vitest checks content, landmarks, navigation, project data, resume routes/shared facts, print controls, scene selection and failure behavior. Playwright checks ten viewport widths (360–1920px), keyboard/menu behavior, technology wrapping, 200% text enlargement, axe accessibility, actual WebGL rendering, DPR, pause/resume, reduced motion, fallback paths, hover and touch scrolling. Browser tests use one worker because concurrent WebGL contexts compete for the same GPU/software renderer. Existing test coverage is retained; traces are retained on failure.
 
-QA screenshots and measurements go to ignored `.qa/`; browser reports and traces are also ignored. Recorded results: [Milestone 1](docs/milestone-1-qa.md), [Milestone 1.1](docs/milestone-1.1-qa.md), [Milestone 2](docs/milestone-2-qa.md), [Milestone 3](docs/milestone-3-qa.md), [Milestone 4](docs/milestone-4-qa.md), [Milestone 5](docs/milestone-5-qa.md).
+QA screenshots and measurements go to ignored `.qa/`; browser reports and traces are also ignored. Recorded results: [Milestone 1](docs/milestone-1-qa.md), [Milestone 1.1](docs/milestone-1.1-qa.md), [Milestone 2](docs/milestone-2-qa.md), [Milestone 3](docs/milestone-3-qa.md), [Milestone 4](docs/milestone-4-qa.md), [Milestone 5](docs/milestone-5-qa.md), [Milestone 6](docs/milestone-6-qa.md).
 
 ## Structure
 
@@ -58,7 +61,7 @@ Essential hero text and CTAs remain ordinary HTML. The canvas is decorative, hid
 
 Open either resume from the portfolio. The pages use shared identity/project/evidence/education data, with different summaries, skills, project order, and factual bullets. DICT training and the additional resume facts come from the Milestone 5 brief. Projects are labeled Selected Project Experience, never paid employment.
 
-For print, use A4 at default scale with browser headers/footers disabled. Both tested resumes use two pages with white margins and readable URLs. QA print output is temporary and ignored; final PDF exports remain deferred. Future static hosting must serve the app entry for `/resume/software` and `/resume/operations`, as the local Vite servers do. No hosting configuration was added.
+For print, use A4 at default scale with browser headers/footers disabled. Both tested resumes use two pages with white margins and readable URLs. QA print output is temporary and ignored; final PDF exports remain deferred. Future static hosting must serve the app entry for `/resume/software` and `/resume/operations`, as the local Vite servers do. For the future Cloudflare Workers Static Assets host, configure assets.directory as ./dist/ and assets.not_found_handling as single-page-application. See the [verified deployment preparation notes](docs/milestone-6-qa.md#deployment-preparation). No hosting configuration was added.
 
 ## Hero scene boundary
 
@@ -74,4 +77,4 @@ Runtime versions are pinned to Three 0.182.0, Fiber 9.7.0 and Drei 10.7.8. React
 
 Scroll-driven multi-section cameras, project-specific 3D storytelling, advanced scene transitions and deployment remain future milestones. No external models, postprocessing, physics integration, backend, analytics or contact-form services were added.
 
-Milestone 5 stays local on `milestone5/dual-resume`, branched from completed Milestone 4 commit `041552e`. No push, merge or deployment is part of this milestone.
+Milestone 6 stays local on `milestone6/production-hardening`, branched from completed Milestone 5 commit `6548855`. No push, merge or deployment is part of this milestone.

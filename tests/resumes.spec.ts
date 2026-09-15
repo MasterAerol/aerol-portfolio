@@ -1,3 +1,4 @@
+import { auditWidths } from './viewports'
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
@@ -6,7 +7,7 @@ const orders = {
   operations: ['AI Operations Automation Hub', 'OpsCheck Flow', 'PasaWise CSE', 'Kivo — Life Organizer'],
 }
 for (const variant of ['software', 'operations'] as const) {
-  for (const width of [1440, 1024, 768, 430, 390, 360]) {
+  for (const width of auditWidths) {
     test(`${variant} resume ${width}px: accessible content, route refresh and print control`, async ({ page }) => {
       const errors: string[] = [], sceneRequests: string[] = []
       page.on('pageerror', error => errors.push(error.message))
