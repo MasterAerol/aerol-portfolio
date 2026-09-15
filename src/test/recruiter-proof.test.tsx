@@ -43,18 +43,16 @@ describe('recruiter proof and readiness', () => {
     }
   })
 
-  it('keeps absent approved media and resumes out of the UI', () => {
+  it('keeps absent project media and PDF downloads out of the UI', () => {
     render(<><SelectedWork /><Resume /></>)
     // There are no approved product screenshots or PDFs in public assets.
     const assets = readdirSync('public', { recursive: true }).map(String)
     expect(assets.filter(path => /\.(pdf|png|jpe?g|webp|avif|mp4)$/i.test(path))).toEqual([])
     expect(document.querySelector('#work img, #work video, .media-gallery, [download], a[href$=".pdf"]')).toBeNull()
     const resume = within(document.getElementById('resume')!)
-    for (const button of resume.getAllByRole('button')) {
-      expect(button).toBeDisabled()
-      expect(button).toHaveAccessibleName(/resume being prepared/i)
-      expect(button).toHaveAccessibleDescription('Download will be available when the resume is ready.')
-    }
+    const links = resume.getAllByRole('link', { name: /View Resume/ })
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations'])
+    expect(resume.queryByRole('button')).toBeNull()
   })
 
   it('labels the four selected projects as project experience rather than employment', () => {

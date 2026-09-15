@@ -79,17 +79,14 @@ describe('portfolio foundation', () => {
     }
   })
 
-  it('makes both resume tracks explicitly unavailable without fake downloads', () => {
+  it('links both HTML resume tracks without fake PDF downloads', () => {
     render(<App />)
     const resume = document.getElementById('resume')!
-    const buttons = within(resume).getAllByRole('button', { name: /resume being prepared/i })
-    expect(buttons).toHaveLength(2)
-    for (const button of buttons) {
-      expect(button).toBeDisabled()
-      expect(button).toHaveAccessibleDescription('Download will be available when the resume is ready.')
-    }
-    expect(resume.querySelector('a')).toBeNull()
-    expect(document.querySelector('[download]')).toBeNull()
+    const links = within(resume).getAllByRole('link', { name: /View Resume/ })
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations'])
+    for (const link of links) expect(link).toHaveAccessibleDescription('Print / Save as PDF from the resume page.')
+    expect(resume.querySelector('button')).toBeNull()
+    expect(document.querySelector('[download], a[href$=".pdf"]')).toBeNull()
   })
 
   it('exposes the supplied contact channels and transparent AI-assistance copy', () => {

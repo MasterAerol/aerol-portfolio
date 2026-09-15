@@ -26,8 +26,8 @@ export const processSteps = [
   { title: 'Iterate with evidence', description: 'Check what works, document decisions, and refine the system through Git/GitHub and focused iterations.' },
 ] as const
 
-// VS Code and a REST-specific claim are omitted because the project facts do not
-// establish them. ChatGPT/Codex are explicitly established by the About brief.
+// The portfolio skill list preserves its approved scope. Milestone 5 separately
+// verifies REST APIs for the Developer resume. ChatGPT/Codex are established by the About brief.
 export const skillGroups = [
   { name: 'Development', items: ['Python', 'TypeScript', 'JavaScript', 'React', 'HTML', 'CSS', 'SQL'] },
   { name: 'Backend / Systems', items: ['SQLite', 'PostgreSQL', 'Supabase', 'Cloudflare Workers', 'Cloudflare D1', 'Hono', 'Authentication', 'Row Level Security', 'Workflow orchestration'] },
@@ -44,6 +44,6 @@ export const opportunities = [
 ] as const
 
 export const resumeTracks = [
-  { id: 'developer-resume', title: 'Software / Developer Resume', description: 'Software development, systems, and product work.' },
-  { id: 'operations-resume', title: 'AI Operations / Technical VA Resume', description: 'Automation, technical support, and operations.' },
+  { id: 'developer-resume', variant: 'software', path: '/resume/software', title: 'Software / Developer Resume', description: 'Software development, systems, and product work.' },
+  { id: 'operations-resume', variant: 'operations', path: '/resume/operations', title: 'AI Operations / Technical VA Resume', description: 'Automation, technical support, and operations.' },
 ] as const

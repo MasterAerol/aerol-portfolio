@@ -1,6 +1,6 @@
 # Portfolio content audit
 
-Source: the portfolio brief supplied by James Aerol Ilagan, the approved Milestone 1.1 corrections, the stricter supplied Milestone 3 project facts, and the approved Milestone 4 status/evidence presentation. The portfolio represents those supplied facts; it does not assert that the underlying projects were retested during this milestone.
+Source: the portfolio brief supplied by James Aerol Ilagan, the approved Milestone 1.1 corrections, the stricter supplied Milestone 3 project facts, the approved Milestone 4 status/evidence presentation, and the verified Milestone 5 resume facts. The portfolio represents those supplied facts; it does not assert that the underlying projects were retested during this milestone.
 
 ## Identity and positioning
 
@@ -15,7 +15,7 @@ Source: the portfolio brief supplied by James Aerol Ilagan, the approved Milesto
 
 | Project | Content boundary | Audit |
 | --- | --- | --- |
-| OpsCheck Flow | Released — v0.1.0; supplied repository/release URLs; Python/SQLite and the verified engineering concepts. Snapshot is 227 total, 225 passed, 0 failed, 2 intentional Windows symlink skips. CI matrix preserved. Accessible proof summary: 227 tests · 225 passed · 2 intentional skips. | PASS; no unsupported claims |
+| OpsCheck Flow | Released — v0.1.0; supplied repository/release URLs; Python/SQLite and the verified engineering concepts. Snapshot is 227 total, 225 passed, 0 failed, 2 intentional Windows symlink skips. CI matrix preserved. Milestone 5 additionally verifies atomic SQLite claims, lease-token fencing, heartbeat renewal, and crash recovery for the Developer resume. Accessible proof summary: 227 tests · 225 passed · 2 intentional skips. | PASS; no unsupported claims |
 | AI Operations Automation Hub | Category: Operations Automation / Workflow Systems. Supabase/Auth/PostgreSQL/RLS, n8n, Google Sheets, TypeScript/JavaScript, Git/GitHub, automated/browser testing; operations workflows and access controls. Built / Workflow Prototype; no supplied public URLs. | PASS; no unsupported claims |
 | PasaWise CSE | React/TypeScript/Vite/Hono/Cloudflare Workers/D1/SQL/Git/GitHub; supplied CSE learning and recovery features. No CE project, learner results, invented public launch, or URLs. Status: Built / Web Application. | PASS; no unsupported claims |
 | Kivo — Life Organizer | Private Alpha / In Development; Android/Capacitor/APK/automated QA; supplied local-first life-admin concepts. 596 automated tests, with no invented pass count. Technologies limited to Android/Capacitor; the earlier package identifier is omitted under the stricter Milestone 3 brief. | PASS; no unsupported claims |
@@ -24,10 +24,10 @@ Project content exists once in `src/data/projects.ts`. The reusable project-stor
 
 ## Conservative omissions
 
-VS Code is named in the requested skills group but is not established by the verified project facts, so it is omitted under the brief's final evidence qualifier. The REST-specific skill label is also omitted; the requested broader API capability remains. ChatGPT/Codex are supported by the explicit About instructions.
+VS Code is named in the requested skills group but is not established by the verified project facts, so it is omitted under the brief's final evidence qualifier. Milestone 5 explicitly verifies REST APIs for the Developer resume; the existing portfolio Skills presentation stays unchanged. ChatGPT/Codex are supported by the explicit About instructions.
 
 No OpenAI API, Docker, Resend, AWS, Kubernetes, paid model processing, planned-technology section, customers, revenue, employment, production-scale assertions, launch claims, or invented statistics were added.
 
 ## Resume and education
 
-No approved screenshots, resume PDFs, or certification/training evidence exist in the current repository. Portfolio QA screenshots are not project media. No gallery or certification is invented. Both requested resume tracks say “Resume being prepared,” use disabled buttons with explanatory descriptions, and contain no download URL. The supplied Civil Engineering education appears in its own secondary section and does not replace the software/automation identity. The resume summary is explicitly labeled Selected Project Experience, without employment claims.
+No approved project screenshots or final resume PDFs exist. Portfolio QA screenshots are not project media. Both resume cards now link to truthful HTML views with browser printing; no final PDF download is linked. Milestone 5 verifies Python Programming Essentials from DICT as completed 40-hour training in December 2023. No certificate ID is invented; the incomplete Udemy course is omitted. The supplied Civil Engineering education appears in its own secondary section and does not replace the software/automation identity. Both full resume views explicitly use Selected Project Experience and Target role labels, without employment claims. Identity, project objects/proof, education, and completed training are shared sources; only emphasis and project order differ.

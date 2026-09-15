@@ -12,8 +12,8 @@ export function Resume() {
     </div>
     <div className="resume-grid">{resumeTracks.map(track => <article className="resume-card" key={track.id}>
       <Icon name="file" /><h3>{track.title}</h3><p>{track.description}</p>
-      <button className="button resume-button" type="button" disabled aria-describedby={`${track.id}-note`} aria-label={`${track.title} — resume being prepared`}>Resume being prepared</button>
-      <p className="resume-note" id={`${track.id}-note`}>Download will be available when the resume is ready.</p>
+      <a className="button resume-button" href={track.path} aria-describedby={`${track.id}-note`} aria-label={`${track.title} — View Resume`}>View Resume<Icon name="arrow-up-right" /></a>
+      <p className="resume-note" id={`${track.id}-note`}>Print / Save as PDF from the resume page.</p>
     </article>)}</div>
   </section>
 }

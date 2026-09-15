@@ -18,9 +18,11 @@ for (const width of widths) {
     await expect(page.locator('.project-opscheck-flow .proof-metrics')).toHaveAttribute('aria-label', '227 tests · 225 passed · 2 intentional skips')
     await expect(page.locator('.project-ai-operations-hub .project-category')).toHaveText('Operations Automation / Workflow Systems')
     await expect(page.locator('.project-kivo .status-badge')).toHaveText('Private Alpha')
-    await expect(page.locator('#resume button')).toHaveCount(2)
-    for (const button of await page.locator('#resume button').all()) await expect(button).toBeDisabled()
-    await expect(page.locator('#resume a, [download]')).toHaveCount(0)
+    await expect(page.locator('#resume button')).toHaveCount(0)
+    await expect(page.locator('#resume a')).toHaveCount(2)
+    await expect(page.getByRole('link', { name: 'Software / Developer Resume — View Resume' })).toHaveAttribute('href', '/resume/software')
+    await expect(page.getByRole('link', { name: 'AI Operations / Technical VA Resume — View Resume' })).toHaveAttribute('href', '/resume/operations')
+    await expect(page.locator('[download], a[href$=".pdf"]')).toHaveCount(0)
 
     const layout = await page.evaluate(() => {
       const elements = [...document.querySelectorAll<HTMLElement>('header, main > section, footer')]
@@ -60,9 +62,9 @@ for (const width of widths) {
         expect((await card.boundingBox())!.width).toBeGreaterThanOrEqual(width - 42)
       }
     }
-    await mkdir('.qa/milestone-4/regression', { recursive: true })
-    await page.screenshot({ path: `.qa/milestone-4/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
-    await writeFile(`.qa/milestone-4/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
+    await mkdir('.qa/milestone-5/regression', { recursive: true })
+    await page.screenshot({ path: `.qa/milestone-5/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
+    await writeFile(`.qa/milestone-5/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
 
     const nav = page.getByRole('navigation', { name: 'Primary navigation' })
     if (width < 768) {
@@ -76,7 +78,7 @@ for (const width of widths) {
         expect(bounds.x + bounds.width).toBeLessThanOrEqual(width)
         await expect(link).toBeInViewport()
       }
-      await page.screenshot({ path: `.qa/milestone-4/regression/menu-${width}.png`, animations: 'disabled' })
+      await page.screenshot({ path: `.qa/milestone-5/regression/menu-${width}.png`, animations: 'disabled' })
     }
     await nav.getByRole('link', { name: 'Work', exact: true }).click()
     await expect(page).toHaveURL(/#work$/)

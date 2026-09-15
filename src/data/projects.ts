@@ -1,6 +1,6 @@
 import type { Project } from '../types/project'
 
-// Supplied Milestone 3 facts with Milestone 4 status and proof presentation. Unverified URLs stay absent.
+// Supplied Milestone 3 facts with Milestone 4 status and proof presentation. Milestone 5 adds approved resume narratives; unverified URLs stay absent.
 const opsQA = { total: 227, passed: 225, failed: 0, skips: 2 } as const
 const opsCI = ['Ubuntu / Python 3.10', 'Ubuntu / Python 3.12', 'Ubuntu / Python 3.14', 'Windows / Python 3.12'] as const
 const kivoTests = 596
@@ -20,6 +20,19 @@ export const projects = [
       'Worker leasing and heartbeat handling.',
       'Crash recovery, retry/backoff, dead-letter handling, and replay.',
     ],
+    resume: {
+      "category": "Open-source systems project",
+      "software": [
+        "Built a Python/SQLite workflow runner with parallel CSV checks, persistent workflow state, retries, idempotent event ingestion, human approval, worker leasing, and dead-letter replay.",
+        "Implemented local concurrency safeguards including atomic SQLite claims, lease-token fencing, heartbeat renewal, and crash recovery.",
+        "Added cross-platform GitHub Actions validation covering Ubuntu and Windows environments."
+      ],
+      "operations": [
+        "Built a software project for durable operational CSV review, automated checks, persistent workflow state, and human approval.",
+        "Designed retry/recovery, queue, dead-letter, and replay mechanisms to keep interrupted work recoverable.",
+        "Produced HTML and JSON reports with auditable process history, backed by cross-platform automated validation."
+      ]
+    },
     story: {
       headline: 'State that survives interruption.',
       purpose: 'Designed to make a local operational review workflow durable, recoverable, and auditable.',
@@ -90,6 +103,19 @@ export const projects = [
       'Workspace authentication and controlled database access.',
       'External automation through n8n and Google Sheets.',
     ],
+    resume: {
+      "category": "Operations workflow application",
+      "software": [
+        "Built a full-stack operations workspace for requests, tasks, approvals, and activity tracking.",
+        "Implemented Supabase authentication and PostgreSQL Row Level Security for controlled workspace data access.",
+        "Integrated n8n and Google Sheets for external automation workflows, with automated and browser testing around workflow behavior."
+      ],
+      "operations": [
+        "Organized incoming requests into task workflows with approval/review stages and activity tracking in a project-based operations workspace.",
+        "Used Supabase workspace authentication and PostgreSQL Row Level Security for controlled data access.",
+        "Connected n8n and Google Sheets automation and checked workflow behavior through automated and browser QA."
+      ]
+    },
     story: {
       headline: 'From incoming requests to structured work.',
       purpose: 'Bring review, tracking, automation, and controlled data access into one operational workflow.',
@@ -127,6 +153,18 @@ export const projects = [
       'Smart Recovery, progress tracking, and weak-area signals.',
       'Responsive UI with testing / QA.',
     ],
+    resume: {
+      "category": "Full-stack EdTech web application",
+      "software": [
+        "Built and iterated a Civil Service Exam review platform with authentication, access control, curriculum, lessons, practice, assessments, mock exams, progress, and recovery workflows.",
+        "Worked with React, TypeScript, Vite, Hono, Cloudflare Workers, D1/SQL, responsive UI, and application QA.",
+        "Designed and tested curriculum roadmaps, subject assessments, full mock examinations, and Smart Recovery."
+      ],
+      "operations": [
+        "Broke product requirements into milestones for structured content, practice, assessment, and recovery workflows.",
+        "Iterated learning flows through testing, debugging, and QA across authentication, access control, responsive UI, and progress/weak-area signals."
+      ]
+    },
     story: {
       headline: 'Learning continues after the result.',
       purpose: 'Move from structured lessons to practice and assessment, then use weak-area signals and Smart Recovery to guide targeted follow-up practice.',
@@ -167,6 +205,17 @@ export const projects = [
       'Search and Add for finding and capturing life-admin information.',
       'Offline/local-first behavior and responsive mobile layouts.',
     ],
+    resume: {
+      "category": "Android consumer application",
+      "software": [
+        "Building an Android-first life organizer around dates, responsibilities, documents, belongings, subscriptions, warranties, and everyday administration.",
+        "Implemented Android builds, Capacitor integration, offline/local-first behavior, responsive mobile layouts, and automated QA."
+      ],
+      "operations": [
+        "Organized life-admin workflows around Today, PETSA, SAAN KO, Search, and Add in a private-alpha Android product.",
+        "Iterated milestone development with mobile QA, responsive layouts, and local/offline considerations for dates, belongings, records, and responsibilities."
+      ]
+    },
     story: {
       headline: 'Give everyday life administration a place.',
       purpose: 'Organize what needs attention, dates and commitments, saved locations, and the information people otherwise keep in their head.',

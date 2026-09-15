@@ -32,5 +32,6 @@ export interface Project {
     metrics?: readonly { value: number; label: string }[]
     checks?: readonly string[]
   }
+  resume: { category: string; software: readonly string[]; operations: readonly string[] }
   tagline?: string
 }
