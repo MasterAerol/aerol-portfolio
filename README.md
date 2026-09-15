@@ -1,6 +1,6 @@
 # AEROL. — Portfolio
 
-James Aerol Ilagan's responsive, accessible React / TypeScript / Vite portfolio. Milestones 1 and 1.1 establish the approved content and design. Milestone 2 adds an isolated React Three Fiber identity scene to the hero. Milestone 3 turns Selected Work into four interactive case studies built with HTML, CSS, and SVG.
+James Aerol Ilagan's responsive, accessible React / TypeScript / Vite portfolio. Milestones 1 and 1.1 establish the approved content and design. Milestone 2 adds an isolated React Three Fiber identity scene to the hero. Milestone 3 turns Selected Work into four interactive case studies built with HTML, CSS, and SVG. Milestone 4 adds reusable proof/status presentation, recruiter context, copy-email interaction, and truthful professional metadata.
 
 ## Run locally
 
@@ -27,24 +27,24 @@ On a new machine, install Chromium once with `npx playwright install chromium`. 
 
 Vitest checks content, landmarks, navigation, project data, resume availability, scene selection and failure behavior. Playwright checks six viewport widths, keyboard/menu behavior, technology wrapping, 200% text enlargement, axe accessibility, actual WebGL rendering, DPR, pause/resume, reduced motion, fallback paths, hover and touch scrolling. Browser tests use one worker because concurrent WebGL contexts compete for the same GPU/software renderer. Existing test coverage is retained; traces are retained on failure.
 
-QA screenshots and measurements go to ignored `.qa/`; browser reports and traces are also ignored. Recorded results: [Milestone 1](docs/milestone-1-qa.md), [Milestone 1.1](docs/milestone-1.1-qa.md), [Milestone 2](docs/milestone-2-qa.md), [Milestone 3](docs/milestone-3-qa.md).
+QA screenshots and measurements go to ignored `.qa/`; browser reports and traces are also ignored. Recorded results: [Milestone 1](docs/milestone-1-qa.md), [Milestone 1.1](docs/milestone-1.1-qa.md), [Milestone 2](docs/milestone-2-qa.md), [Milestone 3](docs/milestone-3-qa.md), [Milestone 4](docs/milestone-4-qa.md).
 
 ## Structure
 
 - `src/components/`: header, footer, icons, section headings, reusable project stories and hero visual boundary.
-- `src/components/projects/`: case-study layout and workflow, layer, learning-loop, and organizer diagrams.
+- `src/components/projects/`: case-study layout, reusable proof/status/links, and workflow, layer, learning-loop, and organizer diagrams.
 - `src/components/hero/`: lazy scene, controlled canvas host, geometry, core, orbits, nodes, lighting and fallback.
 - `src/sections/`: the approved semantic HTML sections, including unchanged hero content.
 - `src/data/projects.ts`: the sole project-content source, validated by `Project` in `src/types/project.ts`.
 - `src/data/profile.ts` and `src/data/content.ts`: identity, navigation, capabilities, process, skills, opportunities and resume tracks.
-- `src/styles/`: existing tokens/layout plus separately scoped hero scene and project story stylesheets.
+- `src/styles/`: existing tokens/layout plus separately scoped hero scene, project story, and recruiter proof stylesheets.
 - `src/test/` and `tests/`: unit/content and browser/accessibility tests.
 
 ## Content policy
 
-Project claims derive from the supplied briefs, with Selected Work restricted to the Milestone 3 facts; they are supplied evidence, not a new independent repository audit. See [content notes](docs/content-audit.md).
+Project claims derive from the supplied briefs, with Selected Work restricted to the supplied Milestone 3 facts and Milestone 4 status/evidence wording; they are supplied evidence, not a new independent repository audit. See [content notes](docs/content-audit.md).
 
-Missing project links and unspecified statuses remain absent. Resume controls are disabled until real files are supplied. No resume downloads, LinkedIn URL, fabricated screenshots, employment, customers or performance claims have been added.
+Missing project links remain absent. Built/prototype and private-alpha labels do not imply public launches. Resume controls are disabled until real files are supplied. No resume downloads, LinkedIn URL, fabricated screenshots, employment, customers or performance claims have been added.
 
 ## Design and accessibility
 
@@ -66,4 +66,4 @@ Runtime versions are pinned to Three 0.182.0, Fiber 9.7.0 and Drei 10.7.8. React
 
 Scroll-driven multi-section cameras, project-specific 3D storytelling, advanced scene transitions and deployment remain future milestones. No external models, postprocessing, physics integration, backend, analytics or contact-form services were added.
 
-Milestone 3 stays local on `milestone3/project-storytelling`, branched from approved Milestone 2 commit `5127c0e`. No push, merge or deployment is part of this milestone.
+Milestone 4 stays local on `milestone4/recruiter-proof`, branched from completed Milestone 3 commit `c95bc0c`. No push, merge or deployment is part of this milestone.

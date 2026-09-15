@@ -6,5 +6,6 @@ import './styles/global.css'
 import './styles/sections.css'
 import './styles/hero-scene.css'
 import './styles/project-stories.css'
+import './styles/recruiter-proof.css'
 
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)

@@ -28,13 +28,13 @@ describe('verified project data', () => {
     ])
     expect(project.technologies).toEqual(['Python', 'SQLite', 'Git', 'GitHub', 'GitHub Actions', 'HTML reports', 'JSON reports'])
     expect(project.evidence.details[0]).toBe('Validation snapshot: 227 tests total; 225 passed; 0 failed; 2 intentional Windows symlink skips.')
-    expect(project.evidence.checks).toEqual(['Ubuntu Python 3.10', 'Ubuntu Python 3.12', 'Ubuntu Python 3.14', 'Windows Python 3.12'])
+    expect(project.evidence.checks).toEqual(['Ubuntu / Python 3.10', 'Ubuntu / Python 3.12', 'Ubuntu / Python 3.14', 'Windows / Python 3.12'])
     expect(JSON.stringify(project)).not.toMatch(/AI agent|227 passing/)
   })
 
-  it('keeps Hub and PasaWise release status and links unspecified', () => {
+  it('keeps Hub and PasaWise built status conservative and public links unspecified', () => {
     for (const project of [projects[1], projects[2]]) {
-      expect(project.status).toBeNull()
+      expect(project.status).toMatch(/^Built \/ (Workflow Prototype|Web Application)$/)
       expect(project.links).toEqual([])
     }
     expect(projects[1].technologies).toEqual(['Supabase', 'Supabase Auth', 'PostgreSQL', 'Row Level Security (RLS)', 'n8n', 'Google Sheets', 'TypeScript', 'JavaScript', 'Git', 'GitHub', 'Automated testing', 'Browser testing'])
@@ -56,7 +56,7 @@ describe('verified project data', () => {
   })
 
   it('contains no unsupported metrics or technology claims', () => {
-    expect(JSON.stringify(projects)).not.toMatch(/OpenAI API|Docker|Resend|AWS|Kubernetes|paid AI APIs|revenue|customers|PasaWise CE/)
+    expect(JSON.stringify(projects)).not.toMatch(/OpenAI API|Docker|Resend|AWS|Kubernetes|Stripe|paid AI APIs|revenue|customers|PasaWise CE/)
     for (const project of projects) {
       for (const link of project.links) {
         const url = new URL(link.href)
@@ -70,7 +70,7 @@ describe('verified project data', () => {
   it('sets the supplied SEO title and description without a fabricated canonical domain', () => {
     const html = readFileSync('index.html', 'utf8')
     expect(html).toContain('James Aerol Ilagan — Software, Automation &amp; Operations')
-    expect(html).toContain('Portfolio of James Aerol Ilagan, showcasing software development, workflow automation, systems engineering, and digital product work.')
+    expect(html).toContain('Portfolio of James Aerol Ilagan showcasing software development, workflow automation, systems engineering, and digital product work.')
     expect(html).toContain('<html lang="en">')
     expect(html).not.toContain('rel="canonical"')
   })

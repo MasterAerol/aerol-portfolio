@@ -1,6 +1,6 @@
 # Portfolio content audit
 
-Source: the portfolio brief supplied by James Aerol Ilagan, the approved Milestone 1.1 corrections, and the stricter supplied Milestone 3 project facts. The portfolio represents those supplied facts; it does not assert that the underlying projects were retested during this milestone.
+Source: the portfolio brief supplied by James Aerol Ilagan, the approved Milestone 1.1 corrections, the stricter supplied Milestone 3 project facts, and the approved Milestone 4 status/evidence presentation. The portfolio represents those supplied facts; it does not assert that the underlying projects were retested during this milestone.
 
 ## Identity and positioning
 
@@ -16,9 +16,9 @@ Source: the portfolio brief supplied by James Aerol Ilagan, the approved Milesto
 | Project | Content boundary | Audit |
 | --- | --- | --- |
 | OpsCheck Flow | Released — v0.1.0; supplied repository/release URLs; Python/SQLite and the verified engineering concepts. Snapshot is 227 total, 225 passed, 0 failed, 2 intentional Windows symlink skips. CI matrix preserved. Accessible proof summary: 227 tests · 225 passed · 2 intentional skips. | PASS; no unsupported claims |
-| AI Operations Automation Hub | Category: Operations Automation / Workflow Systems. Supabase/Auth/PostgreSQL/RLS, n8n, Google Sheets, TypeScript/JavaScript, Git/GitHub, automated/browser testing; operations workflows and access controls. No supplied release status or URLs. | PASS; no unsupported claims |
-| PasaWise CSE | React/TypeScript/Vite/Hono/Cloudflare Workers/D1/SQL/Git/GitHub; supplied CSE learning and recovery features. No CE project, learner results, invented release status, or URLs. | PASS; no unsupported claims |
-| Kivo — Life Organizer | Private Alpha; Android/Capacitor/APK/automated QA; supplied local-first life-admin concepts. 596 automated tests, with no invented pass count. Technologies limited to Android/Capacitor; the earlier package identifier is omitted under the stricter Milestone 3 brief. | PASS; no unsupported claims |
+| AI Operations Automation Hub | Category: Operations Automation / Workflow Systems. Supabase/Auth/PostgreSQL/RLS, n8n, Google Sheets, TypeScript/JavaScript, Git/GitHub, automated/browser testing; operations workflows and access controls. Built / Workflow Prototype; no supplied public URLs. | PASS; no unsupported claims |
+| PasaWise CSE | React/TypeScript/Vite/Hono/Cloudflare Workers/D1/SQL/Git/GitHub; supplied CSE learning and recovery features. No CE project, learner results, invented public launch, or URLs. Status: Built / Web Application. | PASS; no unsupported claims |
+| Kivo — Life Organizer | Private Alpha / In Development; Android/Capacitor/APK/automated QA; supplied local-first life-admin concepts. 596 automated tests, with no invented pass count. Technologies limited to Android/Capacitor; the earlier package identifier is omitted under the stricter Milestone 3 brief. | PASS; no unsupported claims |
 
 Project content exists once in `src/data/projects.ts`. The reusable project-story components render that data, including narratives, four distinct interactive system diagrams, prominent proof, and optional validation notes. Empty link arrays never render dummy links.
 
@@ -30,4 +30,4 @@ No OpenAI API, Docker, Resend, AWS, Kubernetes, paid model processing, planned-t
 
 ## Resume and education
 
-Both requested resume tracks say “Resume being prepared,” use disabled buttons with explanatory descriptions, and contain no download URL. The supplied Civil Engineering education appears in its own secondary section and does not replace the software/automation identity.
+No approved screenshots, resume PDFs, or certification/training evidence exist in the current repository. Portfolio QA screenshots are not project media. No gallery or certification is invented. Both requested resume tracks say “Resume being prepared,” use disabled buttons with explanatory descriptions, and contain no download URL. The supplied Civil Engineering education appears in its own secondary section and does not replace the software/automation identity. The resume summary is explicitly labeled Selected Project Experience, without employment claims.

@@ -26,7 +26,7 @@ describe('interactive project stories', () => {
     const metrics = ops.getByLabelText('227 tests · 225 passed · 2 intentional skips')
     expect([...metrics.querySelectorAll('dd')].map(node => node.textContent)).toEqual(['227', '225', '0', '2'])
     expect([...metrics.querySelectorAll('dt')].map(node => node.textContent)).toEqual(['tests', 'passed', 'failed', 'intentional Windows symlink skips'])
-    for (const label of ['Ubuntu Python 3.10', 'Ubuntu Python 3.12', 'Ubuntu Python 3.14', 'Windows Python 3.12']) expect(ops.getByText(label)).toBeVisible()
+    for (const label of ['Ubuntu / Python 3.10', 'Ubuntu / Python 3.12', 'Ubuntu / Python 3.14', 'Windows / Python 3.12']) expect(ops.getByText(label)).toBeVisible()
     expect(ops.getByText('Released — v0.1.0')).toBeVisible()
   })
 

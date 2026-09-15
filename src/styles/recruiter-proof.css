@@ -1,0 +1,30 @@
+/* Milestone 4: scoped proof, resume and contact presentation. */
+.project-status { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; margin-bottom: 20px; }
+.project-status .status-badge { margin: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.project-status .status-built { color: #c4d0d7; border-color: #52616b; }
+.status-detail { font: .75rem/1.6 var(--mono); color: #adbcc6; text-transform: uppercase; letter-spacing: .04em; }
+.proof-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.proof-heading h4 { margin: 0; }
+.proof-kind { font: .6875rem/1.6 var(--mono); letter-spacing: .055em; text-transform: uppercase; color: #a6d5df; padding: 4px 8px; border: 1px solid #365660; border-radius: 3px; }
+.project-story .proof-metrics dd { font-size: 1.85rem; }
+.proof-check-label { font: .8125rem/1.6 var(--mono); color: #c2d0d8; }
+.proof-check-label > span { color: var(--accent); }
+.story-proof .proof-checks { margin-top: 12px; }
+.evidence-note { font-size: .9375rem; line-height: 1.65; color: #bdcbd2; margin-top: 20px; }
+.story-proof .project-links { margin-top: 20px; gap: 10px 20px; }
+.story-proof .project-links a { padding: 7px 0; min-width: 0; overflow-wrap: anywhere; }
+.story-proof .project-details { margin-top: 20px; }
+.resume-summary { display: grid; grid-template-columns: .8fr 1.2fr; gap: 32px; padding-block: 28px; margin-top: 32px; border-block: 1px solid var(--line); }
+.resume-summary h3 { font: .8125rem/1.5 var(--mono); color: #d0dce2; }
+.resume-summary p, .resume-summary ul { color: var(--muted); font-size: .9375rem; line-height: 1.7; margin-top: 14px; }
+.resume-summary ul { padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 7px 20px; }
+.resume-summary li { overflow-wrap: anywhere; }
+.contact-copy { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; }
+.copy-email { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 15px; background: #141d22; color: #c3d3db; border: 1px solid #435761; border-radius: 4px; font-size: .875rem; cursor: pointer; }
+.copy-email:hover { color: var(--accent); border-color: #75afbd; }
+.copy-email:disabled { cursor: progress; }
+.contact-copy p { min-height: 1.65em; font-size: .875rem; color: #b7cdd6; max-width: 100%; overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  .resume-summary { grid-template-columns: 1fr; gap: 24px; padding-block: 24px; }
+  .contact-copy { align-items: flex-start; flex-direction: column; }
+}

@@ -1,8 +1,8 @@
 import type { Project } from '../types/project'
 
-// Milestone 3 supplied facts. Unspecified status and URLs stay absent.
+// Supplied Milestone 3 facts with Milestone 4 status and proof presentation. Unverified URLs stay absent.
 const opsQA = { total: 227, passed: 225, failed: 0, skips: 2 } as const
-const opsCI = ['Ubuntu Python 3.10', 'Ubuntu Python 3.12', 'Ubuntu Python 3.14', 'Windows Python 3.12'] as const
+const opsCI = ['Ubuntu / Python 3.10', 'Ubuntu / Python 3.12', 'Ubuntu / Python 3.14', 'Windows / Python 3.12'] as const
 const kivoTests = 596
 
 export const projects = [
@@ -11,6 +11,7 @@ export const projects = [
     name: 'OpsCheck Flow',
     category: 'Open Source / Systems Engineering',
     status: 'Released — v0.1.0',
+    statusTone: 'released',
     description: 'A local-first durable Python/SQLite workflow runner for operational CSV review with persistent state, retries, idempotent events, human approval, worker leasing, crash recovery, dead-letter handling, and replay.',
     technologies: ['Python', 'SQLite', 'Git', 'GitHub', 'GitHub Actions', 'HTML reports', 'JSON reports'],
     highlights: [
@@ -55,10 +56,13 @@ export const projects = [
       },
     },
     links: [
-      { label: 'Repository', href: 'https://github.com/MasterAerol/opscheck-flow' },
-      { label: 'Release v0.1.0', href: 'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0' },
+      { label: 'View Repository', href: 'https://github.com/MasterAerol/opscheck-flow' },
+      { label: 'View v0.1.0 Release', href: 'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0' },
     ],
     evidence: {
+      label: 'Verified QA',
+      note: 'Open-source release with cross-platform automated validation.',
+      checksLabel: 'CI environments',
       summary: `${opsQA.total} tests · ${opsQA.passed} passed · ${opsQA.skips} intentional skips`,
       metrics: [
         { value: opsQA.total, label: 'tests' },
@@ -77,7 +81,8 @@ export const projects = [
     id: 'ai-operations-hub',
     name: 'AI Operations Automation Hub',
     category: 'Operations Automation / Workflow Systems',
-    status: null,
+    status: 'Built / Workflow Prototype',
+    statusTone: 'built',
     description: 'A full-stack operations workspace for requests, tasks, approvals, activity tracking, and workflow automation.',
     technologies: ['Supabase', 'Supabase Auth', 'PostgreSQL', 'Row Level Security (RLS)', 'n8n', 'Google Sheets', 'TypeScript', 'JavaScript', 'Git', 'GitHub', 'Automated testing', 'Browser testing'],
     highlights: [
@@ -101,6 +106,8 @@ export const projects = [
     },
     links: [],
     evidence: {
+      label: 'Implementation + QA',
+      note: 'Implemented workspace, data/access, and external automation layers, supported by automated and browser testing.',
       summary: 'Automated testing · Browser testing',
       details: ['Automated testing and browser testing are included in the supplied implementation evidence.'],
     },
@@ -109,7 +116,8 @@ export const projects = [
     id: 'pasawise-cse',
     name: 'PasaWise CSE',
     category: 'Full-Stack Product / EdTech',
-    status: null,
+    status: 'Built / Web Application',
+    statusTone: 'built',
     description: 'A web-based review platform for Filipino Civil Service Exam learners with structured lessons, practice, assessments, progress tracking, and targeted recovery workflows.',
     technologies: ['React', 'TypeScript', 'Vite', 'Hono', 'Cloudflare Workers', 'Cloudflare D1', 'SQL', 'Git', 'GitHub'],
     highlights: [
@@ -136,6 +144,8 @@ export const projects = [
     },
     links: [],
     evidence: {
+      label: 'Implementation + QA',
+      note: 'Implemented access control, structured study, assessments, and recovery workflows, with responsive UI and testing / QA.',
       summary: 'Responsive UI · Testing / QA',
       details: ['The supplied implementation includes responsive layouts, testing, and QA.'],
     },
@@ -145,6 +155,8 @@ export const projects = [
     name: 'Kivo — Life Organizer',
     category: 'Consumer App',
     status: 'Private Alpha',
+    statusTone: 'alpha',
+    statusDetail: 'In Development',
     tagline: "Things you shouldn't have to keep in your head.",
     description: 'A private Android-first life organizer for dates, responsibilities, documents, belongings, bills, subscriptions, warranties, and everyday life administration.',
     technologies: ['Android', 'Capacitor'],
@@ -174,6 +186,9 @@ export const projects = [
     },
     links: [],
     evidence: {
+      label: 'Verified QA',
+      note: 'Private-alpha Android application with APK builds and automated QA. In development.',
+      checksLabel: 'Private-alpha implementation evidence',
       summary: `${kivoTests} automated tests`,
       metrics: [{ value: kivoTests, label: 'automated tests' }],
       checks: ['Android application', 'Capacitor integration', 'APK builds', 'Offline/local-first behavior', 'Responsive mobile layouts', 'Automated QA'],

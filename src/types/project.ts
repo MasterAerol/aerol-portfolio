@@ -15,13 +15,18 @@ export interface Project {
   id: string
   name: string
   category: string
-  status: string | null
+  status: string
+  statusTone: 'released' | 'built' | 'alpha'
+  statusDetail?: string
   description: string
   technologies: readonly string[]
   highlights: readonly string[]
   links: readonly ProjectLink[]
   story: { headline: string; purpose: string; visual: ProjectVisual }
   evidence: {
+    label: 'Verified QA' | 'Implementation + QA'
+    note: string
+    checksLabel?: string
     summary: string
     details: readonly string[]
     metrics?: readonly { value: number; label: string }[]

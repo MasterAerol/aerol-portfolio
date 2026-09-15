@@ -60,9 +60,9 @@ for (const width of widths) {
         expect((await card.boundingBox())!.width).toBeGreaterThanOrEqual(width - 42)
       }
     }
-    await mkdir('.qa/milestone-3/regression', { recursive: true })
-    await page.screenshot({ path: `.qa/milestone-3/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
-    await writeFile(`.qa/milestone-3/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
+    await mkdir('.qa/milestone-4/regression', { recursive: true })
+    await page.screenshot({ path: `.qa/milestone-4/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
+    await writeFile(`.qa/milestone-4/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
 
     const nav = page.getByRole('navigation', { name: 'Primary navigation' })
     if (width < 768) {
@@ -76,7 +76,7 @@ for (const width of widths) {
         expect(bounds.x + bounds.width).toBeLessThanOrEqual(width)
         await expect(link).toBeInViewport()
       }
-      await page.screenshot({ path: `.qa/milestone-3/regression/menu-${width}.png`, animations: 'disabled' })
+      await page.screenshot({ path: `.qa/milestone-4/regression/menu-${width}.png`, animations: 'disabled' })
     }
     await nav.getByRole('link', { name: 'Work', exact: true }).click()
     await expect(page).toHaveURL(/#work$/)
@@ -90,7 +90,7 @@ for (const width of widths) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     const clippedTechnology = await page.locator('.technology-list li').evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.clientWidth + 1).map(node => node.textContent))
     expect(clippedTechnology).toEqual([])
-    await expect(page.getByRole('link', { name: 'OpsCheck Flow — Repository' })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
+    await expect(page.getByRole('link', { name: 'OpsCheck Flow — View Repository' })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
     await expect(page.getByRole('link', { name: 'aerolilagan2002@gmail.com' })).toHaveAttribute('href', 'mailto:aerolilagan2002@gmail.com')
     await expect(page.getByRole('link', { name: 'GitHub / MasterAerol' })).toHaveAttribute('href', 'https://github.com/MasterAerol')
     expect(errors).toEqual([])
