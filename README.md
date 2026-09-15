@@ -1,19 +1,52 @@
-# AEROL. — Portfolio
+# Aerol Portfolio
 
-James Aerol Ilagan's responsive, accessible React / TypeScript / Vite portfolio. Milestones 1 and 1.1 establish the approved content and design. Milestone 2 adds an isolated React Three Fiber identity scene to the hero. Milestone 3 turns Selected Work into four interactive case studies built with HTML, CSS, and SVG. Milestone 4 adds reusable proof/status presentation, recruiter context, copy-email interaction, and truthful professional metadata. Milestone 5 adds two targeted, accessible HTML resume views with A4 print styling. Milestone 6 hardens keyboard focus visibility and adds a complete production regression gate.
+Personal portfolio of James Aerol Ilagan showcasing software development, workflow automation, systems projects, and digital product work.
 
-## Run locally
+## Overview
 
-Tested with Node.js 24.18.0 and npm 11.16.0.
+AEROL. combines an accessible, responsive portfolio with a restrained 3D identity scene, four interactive project case studies, and two targeted HTML resumes. Important content stays in ordinary HTML. The site uses the same shared project facts across the portfolio and resumes.
+
+Release preparation targets `MasterAerol/aerol-portfolio` on GitHub and Cloudflare Workers Static Assets. No production URL, hosted CI result, or published v1.0.0 release is claimed yet.
+
+## Featured projects
+
+| Project | Focus | Status |
+| --- | --- | --- |
+| OpsCheck Flow | Durable Python/SQLite workflows for operational CSV review | Released — v0.1.0 |
+| AI Operations Automation Hub | Operations Automation / Workflow Systems | Built / Workflow Prototype |
+| PasaWise CSE | Full-Stack Product / EdTech | Built / Web Application |
+| Kivo — Life Organizer | Android life organization | Private Alpha / In Development |
+
+OpsCheck's public [repository](https://github.com/MasterAerol/opscheck-flow) and [v0.1.0 release](https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0) are the supplied public project destinations. Unverified or private project links are omitted.
+
+Project facts follow the supplied implementation evidence: OpsCheck has 227 tests, 225 passed, 0 failed and 2 intentional Windows symlink skips; Kivo has 596 automated tests. Built/prototype and private-alpha labels do not imply public launches, paid employment, adoption or performance outcomes. See the [content audit](docs/content-audit.md).
+
+## Portfolio stack
+
+These technologies describe this repository, separately from the featured projects:
+
+- React 19.2.8 and React DOM 19.2.8, TypeScript and Vite.
+- Three.js 0.182.0, React Three Fiber 9.7.0 and Drei 10.7.8.
+- CSS, local SVG/geometry and system fonts.
+- Vitest, Testing Library, Playwright and axe for verification.
+- Wrangler 4.131.2 as a development dependency for Cloudflare's local static-assets runtime and future deployment.
+
+Runtime versions are pinned in `package.json`; `package-lock.json` records the dependency tree. npm remains the package manager.
+
+## Local development
+
+Prefer the latest Node.js 22 patch, at least 22.22.2. The Milestone 6 baseline was also tested with Node.js 24.18.0 and npm 11.16.0. CI uses Node 22.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-The development URL is http://127.0.0.1:5173. The port is strict so a conflict is reported instead of silently opening another URL.
+Open [the local development server](http://127.0.0.1:5173). Its port is strict, so a conflict is reported instead of silently choosing another URL.
 
-## Verification
+The static application requires no application secrets. Private environment files, deployment state, dependencies, builds and QA artifacts are excluded from Git. The safe `.env.example` exception is retained; no example or private environment file is required to run the site.
+
+## QA
 
 ```sh
 npm test
@@ -26,55 +59,105 @@ npm audit
 git diff --check
 ```
 
-On a new machine, install Chromium once with `npx playwright install chromium`. Browser tests start Vite automatically when no development server is available. The production command first builds, then runs the full suite against the static preview at port 4173; it starts that preview if needed. Use `npm run test:watch` for unit testing and `npm run preview` for the production build at http://127.0.0.1:4173. No lint script is configured.
+Install Chromium once on a new machine with `npx playwright install chromium`. Use `npm run test:watch` for unit-test development. No lint script is configured.
 
-Vitest checks content, landmarks, navigation, project data, resume routes/shared facts, print controls, scene selection and failure behavior. Playwright checks ten viewport widths (360–1920px), keyboard/menu behavior, technology wrapping, 200% text enlargement, axe accessibility, actual WebGL rendering, DPR, pause/resume, reduced motion, fallback paths, hover and touch scrolling. Browser tests use one worker because concurrent WebGL contexts compete for the same GPU/software renderer. Existing test coverage is retained; traces are retained on failure.
+Vitest checks content, landmarks, navigation, project data, resume routes/shared facts, print controls, scene selection and failure handling. Playwright covers ten viewport widths from 360px to 1920px, sequential keyboard/menu navigation, technology wrapping, 200% text enlargement, axe accessibility, actual WebGL rendering, DPR, pause/resume, reduced motion, fallback paths, hover and touch scrolling. One browser worker avoids competing WebGL contexts; traces are retained on failure.
 
-QA screenshots and measurements go to ignored `.qa/`; browser reports and traces are also ignored. Recorded results: [Milestone 1](docs/milestone-1-qa.md), [Milestone 1.1](docs/milestone-1.1-qa.md), [Milestone 2](docs/milestone-2-qa.md), [Milestone 3](docs/milestone-3-qa.md), [Milestone 4](docs/milestone-4-qa.md), [Milestone 5](docs/milestone-5-qa.md), [Milestone 6](docs/milestone-6-qa.md).
+Browser commands use the same regression suite:
 
-## Structure
+| Command | Local target | Startup |
+| --- | --- | --- |
+| `npm run test:e2e` | Vite development, port 5173 | Starts the development server if needed |
+| `npm run test:e2e:production` | Vite production preview, port 4173 | Builds first, then starts preview if needed |
+| `npm run test:e2e:cloudflare` | Wrangler local static assets, port 8787 | Starts `cf:dev`, including its build, if needed |
 
-- `src/components/`: header, footer, icons, section headings, reusable project stories and hero visual boundary.
-- `src/components/projects/`: case-study layout, reusable proof/status/links, and workflow, layer, learning-loop, and organizer diagrams.
+QA screenshots and measurements are stored in ignored `.qa/`; browser reports and traces are also ignored. Recorded checks use Chromium on Windows with viewport/touch emulation; physical devices, Firefox and Safari are not represented as tested.
+
+See the [release-preparation report](docs/milestone-7-qa.md) for current results and limitations. Earlier reports preserve development evidence: [M1](docs/milestone-1-qa.md), [M1.1](docs/milestone-1.1-qa.md), [M2](docs/milestone-2-qa.md), [M3](docs/milestone-3-qa.md), [M4](docs/milestone-4-qa.md), [M5](docs/milestone-5-qa.md), [M6](docs/milestone-6-qa.md).
+
+## GitHub Actions CI
+
+`.github/workflows/ci.yml` validates pull requests targeting `main` and pushes to `main`. It uses `actions/checkout@v7`, `actions/setup-node@v7`, Node 22 and `npm ci`, then runs unit tests, typecheck and the production build. There is no lint step because no lint script exists.
+
+CI performs validation only. It does not deploy or require Cloudflare credentials. Hosted workflow results will exist only after GitHub publication and execution; no CI badge is asserted in advance.
+
+## Production build
+
+```sh
+npm run build
+npm run preview
+```
+
+Vite writes the static application to `dist/`. Open [the local production preview](http://127.0.0.1:4173). The HTML resume routes are `/resume/software` and `/resume/operations`.
+
+## Cloudflare Workers Static Assets
+
+`wrangler.jsonc` configures static hosting without a backend Worker:
+
+| Setting | Value |
+| --- | --- |
+| Worker name | `aerol-portfolio` |
+| Compatibility date | `2026-09-15` |
+| Build command | `npm run build` |
+| Assets directory | `./dist/` |
+| Not-found handling | `single-page-application` |
+
+SPA fallback serves the application entry for direct navigation and refresh at both resume routes. Ordinary JS, CSS and favicon requests remain static assets. No KV, D1, R2, Workers AI, backend API or deployment secret is needed by this portfolio.
+
+Run the local Cloudflare preview:
+
+```sh
+npm run cf:dev
+```
+
+This builds the site, then runs the project-local Wrangler with `--local --ip 127.0.0.1 --port 8787`. Open [the local Cloudflare preview](http://127.0.0.1:8787). Use `npm run test:e2e:cloudflare` for its browser regression suite. Local-preview evidence and any limitations belong in the release-preparation report.
+
+Remote deployment is a separate step requiring explicit approval. The prepared `cf:deploy` script runs `npm run build && wrangler deploy`; do not execute it as part of local QA. Future deployment may use Cloudflare Workers deployment/Git integration; the GitHub Actions workflow here remains validation only.
+
+The expected initial URL format is `aerol-portfolio.<account-workers-subdomain>.workers.dev`. The actual account subdomain is not known or hardcoded. After a deployment is verified, add the real canonical and social metadata URLs together and repeat direct-route/asset/link checks on that host. A custom domain remains a later decision.
+
+## Project structure
+
+- `src/components/`: header, footer, icons, section headings and the hero visual boundary.
+- `src/components/projects/`: case-study layout, proof/status/links, and workflow, layer, learning-loop and organizer diagrams.
 - `src/components/hero/`: lazy scene, controlled canvas host, geometry, core, orbits, nodes, lighting and fallback.
-- `src/sections/`: the approved semantic HTML sections, including unchanged hero content.
-- `src/data/projects.ts`: the sole project-content source, validated by `Project` in `src/types/project.ts`.
+- `src/sections/`: semantic HTML portfolio sections.
+- `src/data/projects.ts`: shared project content, validated by `src/types/project.ts`.
 - `src/data/profile.ts` and `src/data/content.ts`: identity, navigation, capabilities, process, skills, opportunities and resume tracks.
-- `src/styles/`: existing tokens/layout plus separately scoped hero scene, project story, recruiter proof, and resume screen/print stylesheets.
 - `src/data/resume.ts` and `src/data/education.ts`: targeted resume presentation and shared education/completed training.
-- `src/ResumeRouter.tsx` and `src/pages/ResumePage.tsx`: two lightweight HTML resume views; unknown paths preserve the portfolio.
-- `src/test/` and `tests/`: unit/content and browser/accessibility tests.
+- `src/ResumeRouter.tsx` and `src/pages/ResumePage.tsx`: HTML resume views; unknown paths preserve the portfolio.
+- `src/styles/`: shared design tokens/layout and scoped hero, project, proof and resume screen/print styles.
+- `src/test/` and `tests/`: unit/content and browser/accessibility checks.
+- `.github/workflows/ci.yml` and `wrangler.jsonc`: CI validation and static hosting configuration.
 
-## Content policy
+## Accessibility and reduced motion
 
-Project claims derive from the supplied briefs, with Selected Work restricted to the supplied Milestone 3 facts and Milestone 4 status/evidence wording; they are supplied evidence, not a new independent repository audit. See [content notes](docs/content-audit.md).
+The near-black, graphite, white and cyan design uses semantic HTML, a skip link, native links/buttons/disclosures and visible focus outlines. The mobile menu supports Escape, focus exit, outside clicks, breakpoint changes and short screens.
 
-Missing project links remain absent. Built/prototype and private-alpha labels do not imply public launches. Resume cards link to real HTML views at `/resume/software` and `/resume/operations`. Each offers browser Print / Save as PDF; no downloadable PDF is claimed. No resume downloads, LinkedIn URL, fabricated screenshots, employment, customers or performance claims have been added.
+Essential hero text and CTAs remain ordinary HTML. The decorative canvas is hidden from assistive technology and excluded from keyboard navigation. On mobile it sits below the hero links, allows vertical touch scrolling, and uses reduced motion amplitudes without pointer parallax.
 
-## Design and accessibility
+`HeroVisualBoundary` selects a static CSS fallback or lazy `HeroScene`. Reduced motion skips the animated scene entirely; project-story animation also stops without removing content. Unsupported WebGL, initialization failure, drawing failure and context loss restore the fallback.
 
-The approved near-black, graphite, white and cyan design uses system fonts, semantic HTML, a skip link, native links/buttons/disclosures and visible focus outlines. The mobile menu supports Escape, focus exit, outside clicks, breakpoint changes and short screens.
-
-Essential hero text and CTAs remain ordinary HTML. The canvas is decorative, hidden from assistive technology and excluded from keyboard navigation. On mobile it sits below the hero links, permits vertical touch scrolling, and uses reduced motion amplitudes without pointer parallax.
+The scene uses local geometry: a layered beveled graphite plate, extruded A, cyan dot, three elliptical paths and four project chips. It contains no navigation or additional project claims. The controlled R3F root handles asynchronous setup failures, waits for a successful draw before reporting readiness, owns cleanup, and pauses continuous rendering offscreen or in hidden documents. Pointer and animation updates use refs. DPR is fixed at 1 after profiling; shadows, textures, environment maps and postprocessing are absent.
 
 ## Resume views and printing
 
-Open either resume from the portfolio. The pages use shared identity/project/evidence/education data, with different summaries, skills, project order, and factual bullets. DICT training and the additional resume facts come from the Milestone 5 brief. Projects are labeled Selected Project Experience, never paid employment.
+Both resumes share identity, project evidence, education and completed training. Summaries, skills, factual bullets and project order differ by target role. Projects are labeled Selected Project Experience.
 
-For print, use A4 at default scale with browser headers/footers disabled. Both tested resumes use two pages with white margins and readable URLs. QA print output is temporary and ignored; final PDF exports remain deferred. Future static hosting must serve the app entry for `/resume/software` and `/resume/operations`, as the local Vite servers do. For the future Cloudflare Workers Static Assets host, configure assets.directory as ./dist/ and assets.not_found_handling as single-page-application. See the [verified deployment preparation notes](docs/milestone-6-qa.md#deployment-preparation). No hosting configuration was added.
+Each route offers a real Print / Save as PDF control. Use A4 at default scale with browser headers/footers disabled. The recorded M5/M6 print inspections produced two pages per resume with white margins and readable URLs; other print settings may change pagination. Temporary QA print files are not public downloads. Final exported resume PDFs remain deferred.
 
-## Hero scene boundary
+## GitHub repository metadata
 
-`HeroVisualBoundary` selects a static CSS fallback or lazy `HeroScene`. Reduced motion skips the animated scene entirely. Unsupported WebGL, initialization failure, drawing failure and context loss all restore the fallback without removing content.
+Suggested metadata describes this portfolio repository:
 
-The scene uses local geometry only: a layered beveled graphite plate, extruded A, cyan dot, three thin elliptical paths and four project chips. Names come from the existing project records. The scene contains no navigation or new project claims.
+- Name: `MasterAerol/aerol-portfolio`
+- Description: Interactive portfolio of James Aerol Ilagan featuring software, automation, systems, and product projects.
+- Topics: `portfolio`, `react`, `typescript`, `vite`, `threejs`, `react-three-fiber`, `frontend`, `developer-portfolio`, `webgl`, `accessibility`
 
-The controlled R3F root catches asynchronous renderer setup failures, announces readiness only after a successful draw, owns cleanup, and pauses continuous rendering offscreen or in a hidden document. Pointer and animation updates use refs. DPR is fixed at 1 after profiling; shadows, textures, environment maps and postprocessing are absent.
+## License and usage
 
-Runtime versions are pinned to Three 0.182.0, Fiber 9.7.0 and Drei 10.7.8. React/React DOM use compatible 19.2.8 instead of the foundation's 19.3.0: Fiber 9.7's peer range excludes 19.3. The matched React types are 19.2.18 / 19.2.7. Three 0.182 avoids a newer Clock deprecation while Fiber still uses that clock.
+Personal portfolio source. No license has been granted unless stated otherwise.
 
 ## Deferred work
 
-Scroll-driven multi-section cameras, project-specific 3D storytelling, advanced scene transitions and deployment remain future milestones. No external models, postprocessing, physics integration, backend, analytics or contact-form services were added.
-
-Milestone 6 stays local on `milestone6/production-hardening`, branched from completed Milestone 5 commit `6548855`. No push, merge or deployment is part of this milestone.
+GitHub publication, hosted CI execution, remote deployment, a verified production URL, a custom domain, final PDF exports, backend contact forms and analytics remain separate steps. Scroll-driven multi-section cameras, project-specific 3D storytelling and advanced scene transitions are also deferred.

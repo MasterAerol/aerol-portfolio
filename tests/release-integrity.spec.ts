@@ -20,8 +20,12 @@ for (const [route, title] of Object.entries(titles)) {
       if (message.type() === 'warning') warnings.push(message.text())
     })
     page.on('response', response => { if (response.status() >= 400) failures.push(`${response.status()} ${response.url()}`) })
-    await page.goto(route)
-    await page.reload()
+    const direct = await page.goto(route)
+    expect(direct?.status()).toBe(200)
+    expect(direct?.headers()['content-type']).toContain('text/html')
+    const refreshed = await page.reload()
+    expect(refreshed?.status()).toBe(200)
+    expect(refreshed?.headers()['content-type']).toContain('text/html')
     await expect(page).toHaveTitle(title)
     await expect(page.getByRole('main')).toHaveCount(1)
     await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
@@ -48,6 +52,25 @@ for (const [route, title] of Object.entries(titles)) {
       if (!link.href!.startsWith('#')) expect([...publicLinks, '/resume/software', '/resume/operations', '/#resume']).toContain(link.href)
     }
     await expect(page.locator('[download], a[href*="linkedin"], a[href$=".pdf"], link[rel="canonical"], meta[property="og:url"]')).toHaveCount(0)
+    // Verify real assets retain their MIME types instead of receiving SPA HTML.
+    const assets = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(nodes =>
+      nodes.map(node => ({
+        url: node.getAttribute('src') || node.getAttribute('href')!,
+        script: node.tagName === 'SCRIPT',
+      })),
+    )
+    expect(assets.some(asset => asset.script)).toBe(true)
+    expect(await page.evaluate(() => document.styleSheets.length)).toBeGreaterThan(0)
+    // Vite dev injects imported CSS; built previews must request a real stylesheet.
+    if (!assets.some(asset => asset.url === '/@vite/client')) {
+      expect(assets.some(asset => !asset.script)).toBe(true)
+    }
+    for (const asset of assets) {
+      const response = await page.request.get(asset.url)
+      expect(response.status()).toBe(200)
+      expect(response.headers()['content-type']).toMatch(asset.script ? /(?:java|ecma)script/ : /text\/css/)
+      expect(await response.text()).not.toMatch(/^\s*<!doctype html/i)
+    }
     const favicon = await page.request.get('/favicon.svg')
     expect(favicon.ok()).toBe(true)
     expect(favicon.headers()['content-type']).toContain('image/svg+xml')
