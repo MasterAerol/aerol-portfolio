@@ -63,12 +63,14 @@ describe('portfolio foundation', () => {
     render(<App />)
     const work = document.getElementById('work')!
     expect(within(work).getAllByRole('article')).toHaveLength(4)
+    expect(within(work).getByLabelText('227 tests · 225 passed · 2 intentional skips')).toBeVisible()
+    expect(within(work).getByText('Operations Automation / Workflow Systems')).toBeVisible()
     for (const project of projects) {
       const article = within(work).getByRole('article', { name: project.name })
       expect(within(article).getByText(project.description)).toBeInTheDocument()
-      expect(within(article).getByText('Explore project details')).toBeInTheDocument()
+      expect(within(article).getByText('Validation notes')).toBeInTheDocument()
       for (const technology of project.technologies) {
-        expect(within(article).getByText(technology, { exact: true })).toBeInTheDocument()
+        expect(within(article.querySelector('.technology-list') as HTMLElement).getByText(technology, { exact: true })).toBeInTheDocument()
       }
       expect(article.querySelectorAll('a')).toHaveLength(project.links.length)
       for (const link of project.links) {
@@ -77,24 +79,24 @@ describe('portfolio foundation', () => {
     }
   })
 
-  it('makes both resume tracks explicitly unavailable without fake downloads', () => {
+  it('links both HTML resume tracks without fake PDF downloads', () => {
     render(<App />)
     const resume = document.getElementById('resume')!
-    const buttons = within(resume).getAllByRole('button', { name: /resume being prepared/i })
-    expect(buttons).toHaveLength(2)
-    for (const button of buttons) {
-      expect(button).toBeDisabled()
-      expect(button).toHaveAccessibleDescription('Download will be available when the resume is ready.')
-    }
-    expect(resume.querySelector('a')).toBeNull()
-    expect(document.querySelector('[download]')).toBeNull()
+    const links = within(resume).getAllByRole('link', { name: /View Resume/ })
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations'])
+    for (const link of links) expect(link).toHaveAccessibleDescription('Print / Save as PDF from the resume page.')
+    expect(resume.querySelector('button')).toBeNull()
+    expect(document.querySelector('[download], a[href$=".pdf"]')).toBeNull()
   })
 
   it('exposes the supplied contact channels and transparent AI-assistance copy', () => {
     render(<App />)
     expect(screen.getByRole('link', { name: profile.email })).toHaveAttribute('href', `mailto:${profile.email}`)
     expect(screen.getByRole('link', { name: 'GitHub / MasterAerol' })).toHaveAttribute('href', profile.github)
-    expect(screen.getByText(/I use ChatGPT and Codex heavily/)).toBeInTheDocument()
+    expect(screen.getByText('I use AI-assisted development for implementation, debugging, QA, and iteration while taking responsibility for requirements, product decisions, architecture, milestone planning, testing, Git/GitHub, and reviewing the generated work.')).toBeInTheDocument()
+    expect(document.getElementById('about')).not.toHaveTextContent(/heavily/)
+    expect(screen.getByText('AI-ASSISTED. HUMAN-REVIEWED.')).toBeInTheDocument()
+    expect(screen.getByText('AI Automation / AI Operations')).toBeInTheDocument()
     expect(document.body).not.toHaveTextContent(/LinkedIn|OpenAI API|Docker|Resend|Available on Play Store|Launching Soon/)
     expect(screen.getByText('Technical Virtual Assistant')).toBeInTheDocument()
     expect(screen.getByText('Operations Virtual Assistant')).toBeInTheDocument()

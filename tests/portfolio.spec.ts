@@ -1,7 +1,9 @@
+import { auditWidths } from './viewports'
 import { test, expect } from '@playwright/test'
+import { mkdir, writeFile } from 'node:fs/promises'
 import AxeBuilder from '@axe-core/playwright'
 
-const widths = [1440, 1024, 768, 430, 390, 360]
+const widths = auditWidths
 
 for (const width of widths) {
   test(`${width}px: readable sections, navigation, expanded content, and no overflow`, async ({ page }) => {
@@ -12,11 +14,72 @@ for (const width of widths) {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('JAMES AEROLILAGAN.')
     await expect(page.getByRole('region')).toHaveCount(10)
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
+    await expect(page.locator('.site-header .brand')).toBeInViewport()
+    await expect(page.locator('#about .approach-note')).toContainText('I use AI-assisted development')
+    await expect(page.locator('.project-opscheck-flow .proof-metrics')).toHaveAttribute('aria-label', '227 tests · 225 passed · 2 intentional skips')
+    await expect(page.locator('.project-ai-operations-hub .project-category')).toHaveText('Operations Automation / Workflow Systems')
+    await expect(page.locator('.project-kivo .status-badge')).toHaveText('Private Alpha')
+    await expect(page.locator('#resume button')).toHaveCount(0)
+    await expect(page.locator('#resume a')).toHaveCount(2)
+    await expect(page.getByRole('link', { name: 'Software / Developer Resume — View Resume' })).toHaveAttribute('href', '/resume/software')
+    await expect(page.getByRole('link', { name: 'AI Operations / Technical VA Resume — View Resume' })).toHaveAttribute('href', '/resume/operations')
+    await expect(page.locator('[download], a[href$=".pdf"]')).toHaveCount(0)
+
+    const layout = await page.evaluate(() => {
+      const elements = [...document.querySelectorAll<HTMLElement>('header, main > section, footer')]
+      const sections = elements.map(node => {
+        const rect = node.getBoundingClientRect()
+        return { id: node.id || node.tagName.toLowerCase(), x: rect.x, y: rect.y + scrollY, width: rect.width, height: rect.height }
+      })
+      const clippedText = [...document.querySelectorAll<HTMLElement>('h1, h2, h3, h4, p, li, a, button, summary')]
+        .filter(node => node.clientWidth > 0 && node.scrollWidth > node.clientWidth + 1)
+        .map(node => node.textContent)
+      const grids = ['.about-section', '.project-stories', '.capability-grid', '.process-grid', '.skills-section', '.opportunities-section', '.resume-grid', '.education-section']
+        .map(selector => ({ selector, columns: getComputedStyle(document.querySelector(selector)!).gridTemplateColumns.split(' ').length }))
+      const bodySizes = [...document.querySelectorAll<HTMLElement>('.hero-description, .about-content > p, .project-description')]
+        .map(node => parseFloat(getComputedStyle(node).fontSize))
+      const targets = [...document.querySelectorAll<HTMLElement>('.site-header a, .menu-toggle, .hero a, .project-links a, summary, .resume-button, .contact-section a')]
+        .filter(node => node.getBoundingClientRect().width > 0)
+        .map(node => ({ label: node.textContent, height: node.getBoundingClientRect().height, clipped: node.scrollWidth > node.clientWidth + 1 }))
+      return { sections, clippedText, grids, bodySizes, targets }
+    })
+    expect(layout.sections).toHaveLength(12)
+    expect(layout.clippedText).toEqual([])
+    for (const section of layout.sections) {
+      expect(section.x, section.id).toBeGreaterThanOrEqual(0)
+      expect(section.x + section.width, section.id).toBeLessThanOrEqual(width + 1)
+    }
+    expect(layout.bodySizes.every(size => size >= 16)).toBe(true)
+    for (const target of layout.targets) {
+      expect(target.height, target.label ?? '').toBeGreaterThanOrEqual(44)
+      expect(target.clipped, target.label ?? '').toBe(false)
+    }
+    if (width < 768) {
+      for (const grid of layout.grids) {
+        expect(grid.columns, grid.selector).toBe(grid.selector === '.process-grid' && width > 380 ? 2 : 1)
+      }
+      await expect(page.locator('.hero-visual')).toBeVisible()
+      for (const card of await page.locator('.project-story').all()) {
+        expect((await card.boundingBox())!.width).toBeGreaterThanOrEqual(width - 42)
+      }
+    }
+    await mkdir('.qa/milestone-6/regression', { recursive: true })
+    await page.screenshot({ path: `.qa/milestone-6/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
+    await writeFile(`.qa/milestone-6/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
+
     const nav = page.getByRole('navigation', { name: 'Primary navigation' })
     if (width < 768) {
       await expect(nav).toBeHidden()
       await page.getByRole('button', { name: 'Open navigation menu' }).click()
       await expect(nav).toBeVisible()
+      await expect(page.getByRole('button', { name: 'Close navigation menu' })).toHaveAttribute('aria-expanded', 'true')
+      for (const link of await nav.getByRole('link').all()) {
+        const bounds = (await link.boundingBox())!
+        expect(bounds.height).toBeGreaterThanOrEqual(44)
+        expect(bounds.x + bounds.width).toBeLessThanOrEqual(width)
+        await expect(link).toBeInViewport()
+      }
+      await page.screenshot({ path: `.qa/milestone-6/regression/menu-${width}.png`, animations: 'disabled' })
     }
     await nav.getByRole('link', { name: 'Work', exact: true }).click()
     await expect(page).toHaveURL(/#work$/)
@@ -30,7 +93,7 @@ for (const width of widths) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     const clippedTechnology = await page.locator('.technology-list li').evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.clientWidth + 1).map(node => node.textContent))
     expect(clippedTechnology).toEqual([])
-    await expect(page.getByRole('link', { name: 'OpsCheck Flow — Repository' })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
+    await expect(page.getByRole('link', { name: 'OpsCheck Flow — View Repository' })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
     await expect(page.getByRole('link', { name: 'aerolilagan2002@gmail.com' })).toHaveAttribute('href', 'mailto:aerolilagan2002@gmail.com')
     await expect(page.getByRole('link', { name: 'GitHub / MasterAerol' })).toHaveAttribute('href', 'https://github.com/MasterAerol')
     expect(errors).toEqual([])
