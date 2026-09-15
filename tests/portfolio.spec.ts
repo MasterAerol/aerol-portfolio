@@ -15,7 +15,7 @@ for (const width of widths) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     await expect(page.locator('.site-header .brand')).toBeInViewport()
     await expect(page.locator('#about .approach-note')).toContainText('I use AI-assisted development')
-    await expect(page.locator('.project-opscheck-flow .evidence-summary')).toHaveText('↳227 tests · 225 passed · 2 intentional skips')
+    await expect(page.locator('.project-opscheck-flow .proof-metrics')).toHaveAttribute('aria-label', '227 tests · 225 passed · 2 intentional skips')
     await expect(page.locator('.project-ai-operations-hub .project-category')).toHaveText('Operations Automation / Workflow Systems')
     await expect(page.locator('.project-kivo .status-badge')).toHaveText('Private Alpha')
     await expect(page.locator('#resume button')).toHaveCount(2)
@@ -31,7 +31,7 @@ for (const width of widths) {
       const clippedText = [...document.querySelectorAll<HTMLElement>('h1, h2, h3, h4, p, li, a, button, summary')]
         .filter(node => node.clientWidth > 0 && node.scrollWidth > node.clientWidth + 1)
         .map(node => node.textContent)
-      const grids = ['.about-section', '.project-grid', '.capability-grid', '.process-grid', '.skills-section', '.opportunities-section', '.resume-grid', '.education-section']
+      const grids = ['.about-section', '.project-stories', '.capability-grid', '.process-grid', '.skills-section', '.opportunities-section', '.resume-grid', '.education-section']
         .map(selector => ({ selector, columns: getComputedStyle(document.querySelector(selector)!).gridTemplateColumns.split(' ').length }))
       const bodySizes = [...document.querySelectorAll<HTMLElement>('.hero-description, .about-content > p, .project-description')]
         .map(node => parseFloat(getComputedStyle(node).fontSize))
@@ -56,13 +56,13 @@ for (const width of widths) {
         expect(grid.columns, grid.selector).toBe(grid.selector === '.process-grid' && width > 380 ? 2 : 1)
       }
       await expect(page.locator('.hero-visual')).toBeVisible()
-      for (const card of await page.locator('.project-card').all()) {
+      for (const card of await page.locator('.project-story').all()) {
         expect((await card.boundingBox())!.width).toBeGreaterThanOrEqual(width - 42)
       }
     }
-    await mkdir('.qa/milestone-2/regression', { recursive: true })
-    await page.screenshot({ path: `.qa/milestone-2/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
-    await writeFile(`.qa/milestone-2/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
+    await mkdir('.qa/milestone-3/regression', { recursive: true })
+    await page.screenshot({ path: `.qa/milestone-3/regression/closed-${width}.png`, fullPage: true, animations: 'disabled' })
+    await writeFile(`.qa/milestone-3/regression/layout-${width}.json`, JSON.stringify(layout, null, 2))
 
     const nav = page.getByRole('navigation', { name: 'Primary navigation' })
     if (width < 768) {
@@ -76,7 +76,7 @@ for (const width of widths) {
         expect(bounds.x + bounds.width).toBeLessThanOrEqual(width)
         await expect(link).toBeInViewport()
       }
-      await page.screenshot({ path: `.qa/milestone-2/regression/menu-${width}.png`, animations: 'disabled' })
+      await page.screenshot({ path: `.qa/milestone-3/regression/menu-${width}.png`, animations: 'disabled' })
     }
     await nav.getByRole('link', { name: 'Work', exact: true }).click()
     await expect(page).toHaveURL(/#work$/)

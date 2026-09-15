@@ -27,8 +27,8 @@ describe('verified project data', () => {
       'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0',
     ])
     expect(project.technologies).toEqual(['Python', 'SQLite', 'Git', 'GitHub', 'GitHub Actions', 'HTML reports', 'JSON reports'])
-    expect(project.evidence.details[0]).toBe('Validation snapshot: 227 tests executed; 225 passed; 0 failed; 2 intentional Windows symlink skips.')
-    expect(project.evidence.details[1]).toBe('CI coverage: Ubuntu Python 3.10, 3.12, and 3.14; Windows Python 3.12.')
+    expect(project.evidence.details[0]).toBe('Validation snapshot: 227 tests total; 225 passed; 0 failed; 2 intentional Windows symlink skips.')
+    expect(project.evidence.checks).toEqual(['Ubuntu Python 3.10', 'Ubuntu Python 3.12', 'Ubuntu Python 3.14', 'Windows Python 3.12'])
     expect(JSON.stringify(project)).not.toMatch(/AI agent|227 passing/)
   })
 
@@ -38,7 +38,7 @@ describe('verified project data', () => {
       expect(project.links).toEqual([])
     }
     expect(projects[1].technologies).toEqual(['Supabase', 'Supabase Auth', 'PostgreSQL', 'Row Level Security (RLS)', 'n8n', 'Google Sheets', 'TypeScript', 'JavaScript', 'Git', 'GitHub', 'Automated testing', 'Browser testing'])
-    expect(projects[2].technologies).toEqual(['React', 'TypeScript', 'Vite', 'Hono', 'Cloudflare Workers', 'Cloudflare D1 / SQL', 'Git', 'GitHub'])
+    expect(projects[2].technologies).toEqual(['React', 'TypeScript', 'Vite', 'Hono', 'Cloudflare Workers', 'Cloudflare D1', 'SQL', 'Git', 'GitHub'])
     expect(projects[2].name).toBe('PasaWise CSE')
     expect(projects[1].name).toBe('AI Operations Automation Hub')
     expect(projects[1].category).toBe('Operations Automation / Workflow Systems')
@@ -48,9 +48,10 @@ describe('verified project data', () => {
     const project = projects[3]
     expect(project.status).toBe('Private Alpha')
     expect(project.links).toEqual([])
-    expect(project.technologies).toEqual(['Android', 'Capacitor', 'APK builds', 'Automated QA'])
+    expect(project.technologies).toEqual(['Android', 'Capacitor'])
     expect(project.evidence.summary).toBe('596 automated tests')
-    expect(project.evidence.details.join(' ')).toContain('app.kivo.lifeorganizer')
+    expect(project.evidence.checks).toEqual(['Android application', 'Capacitor integration', 'APK builds', 'Offline/local-first behavior', 'Responsive mobile layouts', 'Automated QA'])
+    expect(project.evidence.details.join(' ')).not.toContain('app.kivo.lifeorganizer')
     expect(JSON.stringify(project)).not.toMatch(/596 passed|596 passing|Play Store|Launching Soon|React|TypeScript/)
   })
 

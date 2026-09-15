@@ -1,8 +1,16 @@
-export interface ProjectLink {
+export interface ProjectLink { label: string; href: string }
+export interface StoryNode {
+  id: string
   label: string
-  href: string
+  description: string
+  features?: readonly string[]
 }
-
+interface VisualBase { title: string; description: string }
+export type ProjectVisual =
+  | (VisualBase & { kind: 'workflow'; review: readonly (readonly StoryNode[])[]; recovery: readonly StoryNode[] })
+  | (VisualBase & { kind: 'layers'; layers: readonly StoryNode[] })
+  | (VisualBase & { kind: 'learning'; stages: readonly StoryNode[] })
+  | (VisualBase & { kind: 'organizer'; concepts: readonly StoryNode[]; categories: readonly string[] })
 export interface Project {
   id: string
   name: string
@@ -12,9 +20,12 @@ export interface Project {
   technologies: readonly string[]
   highlights: readonly string[]
   links: readonly ProjectLink[]
-  evidence?: {
+  story: { headline: string; purpose: string; visual: ProjectVisual }
+  evidence: {
     summary: string
     details: readonly string[]
+    metrics?: readonly { value: number; label: string }[]
+    checks?: readonly string[]
   }
   tagline?: string
 }

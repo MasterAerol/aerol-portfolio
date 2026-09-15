@@ -5,5 +5,6 @@ import './styles/tokens.css'
 import './styles/global.css'
 import './styles/sections.css'
 import './styles/hero-scene.css'
+import './styles/project-stories.css'
 
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)

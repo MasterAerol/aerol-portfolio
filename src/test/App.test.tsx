@@ -63,14 +63,14 @@ describe('portfolio foundation', () => {
     render(<App />)
     const work = document.getElementById('work')!
     expect(within(work).getAllByRole('article')).toHaveLength(4)
-    expect(within(work).getByText('227 tests · 225 passed · 2 intentional skips')).toBeVisible()
+    expect(within(work).getByLabelText('227 tests · 225 passed · 2 intentional skips')).toBeVisible()
     expect(within(work).getByText('Operations Automation / Workflow Systems')).toBeVisible()
     for (const project of projects) {
       const article = within(work).getByRole('article', { name: project.name })
       expect(within(article).getByText(project.description)).toBeInTheDocument()
-      expect(within(article).getByText('Explore project details')).toBeInTheDocument()
+      expect(within(article).getByText('Validation notes')).toBeInTheDocument()
       for (const technology of project.technologies) {
-        expect(within(article).getByText(technology, { exact: true })).toBeInTheDocument()
+        expect(within(article.querySelector('.technology-list') as HTMLElement).getByText(technology, { exact: true })).toBeInTheDocument()
       }
       expect(article.querySelectorAll('a')).toHaveLength(project.links.length)
       for (const link of project.links) {
