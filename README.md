@@ -6,7 +6,7 @@ Personal portfolio of James Aerol Ilagan showcasing software development, workfl
 
 AEROL. combines an accessible, responsive portfolio with a restrained 3D identity scene, four interactive project case studies, and two targeted HTML resumes. Important content stays in ordinary HTML. The site uses the same shared project facts across the portfolio and resumes.
 
-Release preparation targets `MasterAerol/aerol-portfolio` on GitHub and Cloudflare Workers Static Assets. No production URL, hosted CI result, or published v1.0.0 release is claimed yet.
+Release preparation targets `MasterAerol/aerol-portfolio` on GitHub and Cloudflare Workers Static Assets. No production URL or published v1.0.0 GitHub release is claimed yet.
 
 ## Featured projects
 
@@ -77,9 +77,9 @@ See the [release-preparation report](docs/milestone-7-qa.md) for current results
 
 ## GitHub Actions CI
 
-`.github/workflows/ci.yml` validates pull requests targeting `main` and pushes to `main`. It uses `actions/checkout@v7`, `actions/setup-node@v7`, Node 22 and `npm ci`, then runs unit tests, typecheck and the production build. There is no lint step because no lint script exists.
+GitHub Actions validates pull requests targeting `main` and pushes to `main` through `.github/workflows/ci.yml`. It uses `actions/checkout@v7`, `actions/setup-node@v7`, Node 22 and `npm ci`, then runs unit tests, typecheck and the production build. There is no lint step because no lint script exists.
 
-CI performs validation only. It does not deploy or require Cloudflare credentials. Hosted workflow results will exist only after GitHub publication and execution; no CI badge is asserted in advance.
+CI performs validation only. It does not deploy or require Cloudflare credentials.
 
 ## Production build
 
@@ -160,4 +160,4 @@ Personal portfolio source. No license has been granted unless stated otherwise.
 
 ## Deferred work
 
-GitHub publication, hosted CI execution, remote deployment, a verified production URL, a custom domain, final PDF exports, backend contact forms and analytics remain separate steps. Scroll-driven multi-section cameras, project-specific 3D storytelling and advanced scene transitions are also deferred.
+Remote deployment, a verified production URL, a custom domain, final PDF exports, backend contact forms and analytics remain separate steps. Scroll-driven multi-section cameras, project-specific 3D storytelling and advanced scene transitions are also deferred.
