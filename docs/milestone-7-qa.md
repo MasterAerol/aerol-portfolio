@@ -1,5 +1,7 @@
 # Milestone 7 — Release engineering QA
 
+> Current status: the portfolio is deployed at [the verified production URL](https://aerol-portfolio.master-course.workers.dev/), now used by canonical, Open Graph URL and Person URL metadata. Deployment/metadata deferrals below describe this historical milestone, not current availability. No published v1.0.0 GitHub Release is claimed.
+
 Validation status: PASS — ready for GitHub publication preparation. No remote publication or deployment has been performed.
 
 ## Baseline and history

@@ -10,6 +10,7 @@ const publicLinks = [
 const titles = {
   '/': 'James Aerol Ilagan — Software, Automation & Operations',
   '/resume/software': 'James Aerol Ilagan — Software Developer Resume',
+  '/resume/general-va': 'James Aerol Ilagan — General VA & Data Entry Resume',
   '/resume/operations': 'James Aerol Ilagan — AI Operations & Technical VA Resume',
 }
 for (const [route, title] of Object.entries(titles)) {
@@ -50,9 +51,15 @@ for (const [route, title] of Object.entries(titles)) {
       expect(link.label).toBeTruthy()
       expect(link.href).toBeTruthy()
       expect(link.href).not.toBe('#')
-      if (!link.href!.startsWith('#')) expect([...publicLinks, '/resume/software', '/resume/operations', '/#resume']).toContain(link.href)
+      if (!link.href!.startsWith('#')) expect([...publicLinks, '/resume/software', '/resume/operations', '/resume/general-va', '/#resume']).toContain(link.href)
     }
-    await expect(page.locator('[download], a[href$=".pdf"], link[rel="canonical"], meta[property="og:url"]')).toHaveCount(0)
+    await expect(page.locator('[download], a[href$=".pdf"], meta[property="og:image"], meta[name="twitter:image"]')).toHaveCount(0)
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://aerol-portfolio.master-course.workers.dev/')
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://aerol-portfolio.master-course.workers.dev/')
+    const person = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent() ?? '')
+    expect(person.url).toBe('https://aerol-portfolio.master-course.workers.dev/')
+    expect(person.sameAs).toEqual(['https://github.com/MasterAerol', 'https://www.linkedin.com/in/aerol-ilagan-762830435'])
+    await expect(page.locator('a[href="mailto:aerolilagan00@gmail.com"]')).toHaveCount(1)
     // Verify real assets retain their MIME types instead of receiving SPA HTML.
     const assets = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(nodes =>
       nodes.map(node => ({

@@ -1,5 +1,7 @@
 # Milestone 4 — Proof, recruiter readiness and project presentation
 
+> Current status: the portfolio is deployed at [the verified production URL](https://aerol-portfolio.master-course.workers.dev/), now used by canonical, Open Graph URL and Person URL metadata. Deployment/metadata deferrals below describe this historical milestone, not current availability. No published v1.0.0 GitHub Release is claimed.
+
 Date: 2026-09-15. Baseline: `c95bc0c` on `milestone3/project-storytelling`. Implementation branch: `milestone4/recruiter-proof`.
 
 ## Baseline gate

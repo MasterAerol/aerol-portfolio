@@ -2,9 +2,8 @@ import type { Project } from './project'
 import type { profile } from '../data/profile'
 import type { education, training } from '../data/education'
 
-export type ResumeVariant = 'software' | 'operations'
-export interface ResumeContent {
-  variant: ResumeVariant
+export type ResumeVariant = 'software' | 'operations' | 'general-va'
+interface ResumeBase {
   title: string
   headline: string
   focus: string
@@ -16,3 +15,8 @@ export interface ResumeContent {
   projects: readonly Project[]
   skills: readonly { name: string; items: readonly string[] }[]
 }
+
+export type ResumeContent = ResumeBase & (
+  | { variant: 'software' | 'operations' }
+  | { variant: 'general-va'; projectExperience: Readonly<Record<string, { category: string; bullets: readonly string[] }>> }
+)

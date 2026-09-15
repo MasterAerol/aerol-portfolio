@@ -4,9 +4,9 @@ Personal portfolio of James Aerol Ilagan showcasing software development, workfl
 
 ## Overview
 
-AEROL. combines an accessible, responsive portfolio with a restrained 3D identity scene, four interactive project case studies, and two targeted HTML resumes. Important content stays in ordinary HTML. The site uses the same shared project facts across the portfolio and resumes.
+AEROL. combines an accessible, responsive portfolio with a restrained 3D identity scene, four interactive project case studies, and three targeted HTML resumes. Important content stays in ordinary HTML. The site uses the same shared project facts across the portfolio and resumes.
 
-Release preparation targets `MasterAerol/aerol-portfolio` on GitHub and Cloudflare Workers Static Assets. No production URL or published v1.0.0 GitHub release is claimed yet.
+The portfolio is deployed on Cloudflare Workers Static Assets at [the verified production URL](https://aerol-portfolio.master-course.workers.dev/). The repository is `MasterAerol/aerol-portfolio`. No published v1.0.0 GitHub Release is claimed yet.
 
 ## Featured projects
 
@@ -29,7 +29,7 @@ These technologies describe this repository, separately from the featured projec
 - Three.js 0.182.0, React Three Fiber 9.7.0 and Drei 10.7.8.
 - CSS, local SVG/geometry and system fonts.
 - Vitest, Testing Library, Playwright and axe for verification.
-- Wrangler 4.131.2 as a development dependency for Cloudflare's local static-assets runtime and future deployment.
+- Wrangler 4.131.2 as a development dependency for Cloudflare's local static-assets runtime and deployment tooling.
 
 Runtime versions are pinned in `package.json`; `package-lock.json` records the dependency tree. npm remains the package manager.
 
@@ -88,7 +88,7 @@ npm run build
 npm run preview
 ```
 
-Vite writes the static application to `dist/`. Open [the local production preview](http://127.0.0.1:4173). The HTML resume routes are `/resume/software` and `/resume/operations`.
+Vite writes the static application to `dist/`. Open [the local production preview](http://127.0.0.1:4173). The HTML resume routes are `/resume/software`, `/resume/operations`, and `/resume/general-va`.
 
 ## Cloudflare Workers Static Assets
 
@@ -102,7 +102,7 @@ Vite writes the static application to `dist/`. Open [the local production previe
 | Assets directory | `./dist/` |
 | Not-found handling | `single-page-application` |
 
-SPA fallback serves the application entry for direct navigation and refresh at both resume routes. Ordinary JS, CSS and favicon requests remain static assets. No KV, D1, R2, Workers AI, backend API or deployment secret is needed by this portfolio.
+SPA fallback serves the application entry for direct navigation and refresh at all three resume routes. Ordinary JS, CSS and favicon requests remain static assets. No KV, D1, R2, Workers AI, backend API or deployment secret is needed by this portfolio.
 
 Run the local Cloudflare preview:
 
@@ -112,9 +112,9 @@ npm run cf:dev
 
 This builds the site, then runs the project-local Wrangler with `--local --ip 127.0.0.1 --port 8787`. Open [the local Cloudflare preview](http://127.0.0.1:8787). Use `npm run test:e2e:cloudflare` for its browser regression suite. Local-preview evidence and any limitations belong in the release-preparation report.
 
-Remote deployment is a separate step requiring explicit approval. The prepared `cf:deploy` script runs `npm run build && wrangler deploy`; do not execute it as part of local QA. Future deployment may use Cloudflare Workers deployment/Git integration; the GitHub Actions workflow here remains validation only.
+The production site is deployed at [the verified Workers URL](https://aerol-portfolio.master-course.workers.dev/). Manual deployment remains a separate step requiring explicit approval. The `cf:deploy` script runs `npm run build && wrangler deploy`; do not execute it as part of local QA. The GitHub Actions workflow here remains validation only.
 
-The expected initial URL format is `aerol-portfolio.<account-workers-subdomain>.workers.dev`. The actual account subdomain is not known or hardcoded. After a deployment is verified, add the real canonical and social metadata URLs together and repeat direct-route/asset/link checks on that host. A custom domain remains a later decision.
+Canonical, `og:url`, and Person JSON-LD `url` use exactly `https://aerol-portfolio.master-course.workers.dev/`. The shared HTML entry uses this portfolio-root URL for all routes. GitHub, LinkedIn, and the approved knowledge areas remain unchanged. No social preview image or custom domain is claimed.
 
 ## Project structure
 
@@ -142,9 +142,9 @@ The scene uses local geometry: a layered beveled graphite plate, extruded A, cya
 
 ## Resume views and printing
 
-Both resumes share identity, project evidence, education and completed training. Summaries, skills, factual bullets and project order differ by target role. Projects are labeled Selected Project Experience.
+All three resumes share identity, project evidence, education and completed training. Summaries, skills, factual bullets and project order differ by target role. Projects are labeled Selected Project Experience.
 
-Each route offers a real Print / Save as PDF control. Use A4 at default scale with browser headers/footers disabled. The recorded M5/M6 print inspections produced two pages per resume with white margins and readable URLs; other print settings may change pagination. Temporary QA print files are not public downloads. Final exported resume PDFs remain deferred.
+Each route offers a real Print / Save as PDF control. Use A4 at default scale with browser headers/footers disabled. The recorded M5/M6 print inspections produced two pages per resume with white margins and readable URLs; other print settings may change pagination. Temporary QA print files are not public downloads. Final exported resume PDFs remain deferred. The General VA resume selects two relevant projects and keeps skills and credentials together on its second A4 page without reducing the shared print typography.
 
 ## GitHub repository metadata
 
@@ -160,4 +160,4 @@ Personal portfolio source. No license has been granted unless stated otherwise.
 
 ## Deferred work
 
-Remote deployment, a verified production URL, a custom domain, final PDF exports, backend contact forms and analytics remain separate steps. Scroll-driven multi-section cameras, project-specific 3D storytelling and advanced scene transitions are also deferred.
+A custom domain, final PDF exports, backend contact forms and analytics remain separate steps. The portfolio is already deployed at [the verified production URL](https://aerol-portfolio.master-course.workers.dev/); a published v1.0.0 GitHub Release is still pending. Scroll-driven multi-section cameras, project-specific 3D storytelling and advanced scene transitions are also deferred.

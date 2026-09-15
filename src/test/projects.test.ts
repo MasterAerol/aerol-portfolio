@@ -67,11 +67,11 @@ describe('verified project data', () => {
     }
   })
 
-  it('sets the supplied SEO title and description without a fabricated canonical domain', () => {
+  it('sets the supplied SEO title and description with the verified production canonical URL', () => {
     const html = readFileSync('index.html', 'utf8')
     expect(html).toContain('James Aerol Ilagan — Software, Automation &amp; Operations')
     expect(html).toContain('Portfolio of James Aerol Ilagan showcasing software development, workflow automation, systems engineering, and digital product work.')
     expect(html).toContain('<html lang="en">')
-    expect(html).not.toContain('rel="canonical"')
+    expect(html).toContain('<link rel="canonical" href="https://aerol-portfolio.master-course.workers.dev/" />')
   })
 })

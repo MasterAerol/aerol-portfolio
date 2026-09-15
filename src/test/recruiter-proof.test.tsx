@@ -51,7 +51,7 @@ describe('recruiter proof and readiness', () => {
     expect(document.querySelector('#work img, #work video, .media-gallery, [download], a[href$=".pdf"]')).toBeNull()
     const resume = within(document.getElementById('resume')!)
     const links = resume.getAllByRole('link', { name: /View Resume/ })
-    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations'])
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/resume/software', '/resume/operations', '/resume/general-va'])
     expect(resume.queryByRole('button')).toBeNull()
   })
 
@@ -95,10 +95,16 @@ describe('recruiter proof and readiness', () => {
     for (const selector of ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) expect(html.querySelector(selector)?.getAttribute('content')).toBe(description)
     for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) expect(html.querySelector(selector)?.getAttribute('content')).toBe(title)
     expect(html.querySelector('meta[name="twitter:card"]')?.getAttribute('content')).toBe('summary')
-    expect(html.querySelector('link[rel="canonical"], meta[property="og:url"], meta[property="og:image"], meta[name="twitter:site"], meta[name="twitter:creator"]')).toBeNull()
+    expect(html.querySelectorAll('link[rel="canonical"]')).toHaveLength(1)
+    expect(html.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe('https://aerol-portfolio.master-course.workers.dev/')
+    expect(html.querySelectorAll('meta[property="og:url"]')).toHaveLength(1)
+    expect(html.querySelector('meta[property="og:url"]')?.getAttribute('content')).toBe('https://aerol-portfolio.master-course.workers.dev/')
+    expect(html.querySelector('meta[property="og:image"], meta[name="twitter:image"], meta[name="twitter:site"], meta[name="twitter:creator"]')).toBeNull()
+    expect(readFileSync('index.html', 'utf8')).not.toContain('When a production origin is verified')
     const person = JSON.parse(html.querySelector('script[type="application/ld+json"]')!.textContent!)
     expect(person).toEqual({
       '@context': 'https://schema.org', '@type': 'Person', name: profile.name,
+      url: 'https://aerol-portfolio.master-course.workers.dev/',
       sameAs: [profile.github, profile.linkedin],
       knowsAbout: ['Software Development', 'Workflow Automation', 'Python', 'TypeScript', 'React', 'Supabase', 'Cloudflare Workers'],
     })

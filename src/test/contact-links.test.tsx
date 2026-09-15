@@ -16,7 +16,7 @@ describe('approved public contact channels', () => {
     expect(new URL(profile.linkedin).search).toBe('')
   })
 
-  for (const route of ['/', '/resume/software', '/resume/operations']) {
+  for (const route of ['/', '/resume/software', '/resume/operations', '/resume/general-va']) {
     it(`keeps ${route} contact links accessible, current, and free of tracking`, () => {
       render(<ResumeRouter pathname={route} />)
       expect(document.body).toHaveTextContent(businessEmail)
@@ -47,6 +47,7 @@ describe('approved public contact channels', () => {
     expect(fallback.innerHTML).not.toContain(formerEmail)
     expect(fallback.innerHTML).toContain(linkedin)
     const person = JSON.parse(html.querySelector('script[type="application/ld+json"]')!.textContent!)
+    expect(person.url).toBe('https://aerol-portfolio.master-course.workers.dev/')
     expect(person.sameAs).toEqual([profile.github, linkedin])
   })
 })

@@ -39,11 +39,15 @@ export const opportunities = [
   'Junior Software Developer',
   'AI Automation / AI Operations',
   'Technical Virtual Assistant',
+  'General Virtual Assistant',
+  'Data Entry / Administrative Support',
+  'Research / Documentation Support',
   'Operations Virtual Assistant',
   'Workflow / Process Automation',
 ] as const
 
 export const resumeTracks = [
-  { id: 'developer-resume', variant: 'software', path: '/resume/software', title: 'Software / Developer Resume', description: 'Software development, systems, and product work.' },
-  { id: 'operations-resume', variant: 'operations', path: '/resume/operations', title: 'AI Operations / Technical VA Resume', description: 'Automation, technical support, and operations.' },
+  { id: 'developer-resume', variant: 'software', path: '/resume/software', title: 'Software / Developer Resume', description: 'For junior software, web, systems, and developer roles.' },
+  { id: 'operations-resume', variant: 'operations', path: '/resume/operations', title: 'AI Operations / Technical VA Resume', description: 'For automation, technical operations, workflow, and Technical VA roles.' },
+  { id: 'general-va-resume', variant: 'general-va', path: '/resume/general-va', title: 'General VA / Data Entry / Admin Resume', description: 'For General VA, data entry, administrative support, research, and documentation roles.' },
 ] as const

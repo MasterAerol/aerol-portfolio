@@ -20,7 +20,7 @@ for (const width of widths) {
     await expect(page.locator('.project-ai-operations-hub .project-category')).toHaveText('Operations Automation / Workflow Systems')
     await expect(page.locator('.project-kivo .status-badge')).toHaveText('Private Alpha')
     await expect(page.locator('#resume button')).toHaveCount(0)
-    await expect(page.locator('#resume a')).toHaveCount(2)
+    await expect(page.locator('#resume a')).toHaveCount(3)
     await expect(page.getByRole('link', { name: 'Software / Developer Resume — View Resume' })).toHaveAttribute('href', '/resume/software')
     await expect(page.getByRole('link', { name: 'AI Operations / Technical VA Resume — View Resume' })).toHaveAttribute('href', '/resume/operations')
     await expect(page.locator('[download], a[href$=".pdf"]')).toHaveCount(0)

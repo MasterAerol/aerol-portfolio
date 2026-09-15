@@ -45,4 +45,37 @@ export const resumes = {
       { name: 'Technical / QA', items: ['Python', 'TypeScript', 'JavaScript', 'Git', 'GitHub', 'Testing / debugging', 'Browser testing', 'AI-assisted development'] },
     ],
   },
+  'general-va': {
+    ...shared,
+    variant: 'general-va',
+    title: 'James Aerol Ilagan — General VA & Data Entry Resume',
+    headline: 'General Virtual Assistant',
+    focus: 'Data Entry · Administrative Support · Research',
+    summary: 'Civil Engineering graduate transitioning into remote support work, with hands-on, project-based experience managing independent digital projects, organizing structured information, researching solutions, documenting requirements, testing workflows, and using AI tools to improve productivity. Comfortable with detail-oriented and repetitive tasks, spreadsheet-based tracking, web research, documentation, quality checking, and learning unfamiliar software quickly.',
+    projects: orderedProjects(['ai-operations-hub', 'pasawise-cse']),
+    projectExperience: {
+      'ai-operations-hub': {
+        category: 'Independent / project-based work',
+        bullets: [
+          'Built and tested an operations workflow using Google Sheets, n8n automation, authenticated data handling, approval steps, task states, and verification checks.',
+          'Organized workflow states, approval steps, task information, and validation checks to keep information structured and processes reliable.',
+          'Used ChatGPT and Codex to research solutions, document requirements, troubleshoot issues, and improve repetitive workflows.',
+        ],
+      },
+      'pasawise-cse': {
+        category: 'Personal Project',
+        bullets: [
+          'Managed requirements, content, structured information, and testing across a multi-feature web platform.',
+          'Performed detailed quality checks on desktop and mobile, documented issues, and iterated until workflows behaved as intended.',
+          'Used AI-assisted tools for research, documentation, implementation support, and process improvement while learning new tools as needed.',
+        ],
+      },
+    },
+    skills: [
+      { name: 'Administrative & Data', items: ['Data entry', 'Spreadsheet organization', 'Web research', 'Documentation', 'Information organization', 'Quality checking'] },
+      { name: 'AI & Productivity', items: ['ChatGPT', 'Codex', 'AI-assisted research', 'AI-assisted documentation', 'Troubleshooting', 'Process improvement'] },
+      { name: 'Workflow Tools', items: ['Google Sheets', 'Google Drive', 'n8n', 'Structured task tracking', 'Workflow testing'] },
+      { name: 'Technical Foundation', items: ['Python fundamentals', 'Git / GitHub', 'Basic web systems', 'APIs', 'Databases'] },
+    ],
+  },
 } as const satisfies Record<ResumeVariant, ResumeContent>

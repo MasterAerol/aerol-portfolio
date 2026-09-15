@@ -1,5 +1,7 @@
 # Milestone 3 — Interactive project storytelling
 
+> Current status: the portfolio is deployed at [the verified production URL](https://aerol-portfolio.master-course.workers.dev/), now used by canonical, Open Graph URL and Person URL metadata. Deployment/metadata deferrals below describe this historical milestone, not current availability. No published v1.0.0 GitHub Release is claimed.
+
 Date: 2026-09-15. Baseline: `5127c0e` on `milestone2/interactive-3d-hero`. Implementation branch: `milestone3/project-storytelling`.
 
 ## Baseline gate

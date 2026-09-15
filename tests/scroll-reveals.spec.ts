@@ -119,7 +119,7 @@ test('no-JavaScript fallback exposes the approved email and LinkedIn', async ({ 
   await context.close()
 })
 
-for (const variant of ['software', 'operations']) {
+for (const variant of ['software', 'operations', 'general-va']) {
   test(`${variant} resume stays static and exposes approved contact profiles`, async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 844 })
     await page.goto(`/resume/${variant}`)
