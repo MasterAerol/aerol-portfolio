@@ -28,11 +28,13 @@ describe('recruiter proof and readiness', () => {
     for (const project of projects) expect(within(screen.getByRole('article', { name: project.name })).getByText(project.evidence.note)).toBeVisible()
   })
 
-  it('offers only the two supplied public project CTAs with meaningful names and indicators', () => {
+  it('offers only the four supplied public project CTAs with meaningful names and indicators', () => {
     render(<SelectedWork />)
     const links = screen.getAllByRole('link')
-    expect(links).toHaveLength(2)
+    expect(links).toHaveLength(4)
     for (const [name, href] of [
+      ['AI Operations Automation Hub — View Live Project', 'https://ai-operations-hub-fawn.vercel.app/'],
+      ['PasaWise CSE — View Live Project', 'https://pasawise.com/'],
       ['OpsCheck Flow — View Repository', 'https://github.com/MasterAerol/opscheck-flow'],
       ['OpsCheck Flow — View v0.1.0 Release', 'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0'],
     ]) {

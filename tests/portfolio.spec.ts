@@ -184,6 +184,8 @@ for (const width of [1440, 390]) {
     await page.goto('/')
     await page.evaluate(() => document.querySelectorAll('details').forEach(node => { node.open = true }))
     if (width < 768) await page.getByRole('button', { name: 'Open navigation menu' }).click()
+    // Keep the decorative hero offscreen so its continuous rendering pauses during the full-page audit.
+    if (width >= 768) await page.locator('#work').scrollIntoViewIfNeeded()
     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze()
     expect(results.violations).toEqual([])
   })

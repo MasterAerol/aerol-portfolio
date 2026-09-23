@@ -130,7 +130,7 @@ export const projects = [
         ],
       },
     },
-    links: [],
+    links: [{ label: 'View Live Project', href: 'https://ai-operations-hub-fawn.vercel.app/' }],
     evidence: {
       label: 'Implementation + QA',
       note: 'Implemented workspace, data/access, and external automation layers, supported by automated and browser testing.',
@@ -180,7 +180,7 @@ export const projects = [
         ],
       },
     },
-    links: [],
+    links: [{ label: 'View Live Project', href: 'https://pasawise.com/' }],
     evidence: {
       label: 'Implementation + QA',
       note: 'Implemented access control, structured study, assessments, and recovery workflows, with responsive UI and testing / QA.',

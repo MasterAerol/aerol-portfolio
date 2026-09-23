@@ -82,3 +82,21 @@ describe('targeted HTML resumes', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('JAMES AEROLILAGAN.')
   })
 })
+
+for (const variant of ['software', 'operations', 'general-va'] as const) {
+  it(`${variant} uses the real project link label and at most one link per project`, () => {
+    render(<ResumePage resume={resumes[variant]} />)
+    for (const project of resumes[variant].projects) {
+      const article = screen.getByRole('article', { name: project.name })
+      const links = within(article).queryAllByRole('link')
+      expect(links).toHaveLength(Math.min(1, project.links.length))
+      if (project.links.length) {
+        const first = project.links[0]
+        expect(links[0]).toHaveAttribute('href', first.href)
+        expect(links[0]).toHaveAccessibleName(`${project.name} ${first.label}: ${first.href.replace('https://', '')}`)
+        expect(links[0]).toHaveTextContent(`${first.label}: ${first.href.replace('https://', '')}`)
+        if (first.label === 'View Live Project') expect(links[0]).not.toHaveTextContent('Repository:')
+      }
+    }
+  })
+}

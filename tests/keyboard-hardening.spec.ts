@@ -81,6 +81,11 @@ for (const width of [1440, 390]) {
         for (let index = 0; index < project.labels.length; index++) {
           await keyboardNode(page, article.locator('.diagram-node').nth(index), project.labels[index])
         }
+        for (const link of await article.locator('.project-links a').all()) {
+          await visibleMainFocus(link)
+          await expect(link).toHaveText('View Live Project')
+          await page.keyboard.press('Tab')
+        }
         const disclosure = article.locator('summary')
         await visibleMainFocus(disclosure)
         await page.keyboard.press('Space')

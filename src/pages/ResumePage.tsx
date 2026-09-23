@@ -42,7 +42,7 @@ export function ResumePage({ resume }: { resume: ResumeContent }) {
           <p className="resume-project-category">{experience.category}</p>
           <ul>{experience.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
           <p className="resume-evidence"><strong>Validation:</strong> {project.evidence.metrics ? project.evidence.metrics.map(metric => `${metric.value} ${metric.label}`).join(' · ') : project.evidence.summary}</p>
-          {project.links.length > 0 && <div className="resume-project-links">{project.links.slice(0, 1).map(link => <a key={link.href} href={link.href} aria-label={`${project.name} Repository: ${link.href.replace('https://', '')}`}><span>Repository: </span>{link.href.replace('https://', '')}</a>)}</div>}
+          {project.links.length > 0 && <div className="resume-project-links">{project.links.slice(0, 1).map(link => <a key={link.href} href={link.href} aria-label={`${project.name} ${link.label}: ${link.href.replace('https://', '')}`}><span>{link.label}: </span>{link.href.replace('https://', '')}</a>)}</div>}
         </article>
         })}</div>
       </section>
