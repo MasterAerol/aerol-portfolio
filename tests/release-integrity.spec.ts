@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test'
 
 const publicLinks = [
+  'https://ai-operations-hub-fawn.vercel.app/',
+  'https://pasawise.com/',
   'https://github.com/MasterAerol',
   'https://www.linkedin.com/in/aerol-ilagan-762830435',
   'https://github.com/MasterAerol/opscheck-flow',

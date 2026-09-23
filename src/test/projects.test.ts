@@ -22,6 +22,7 @@ describe('verified project data', () => {
     const project = projects[0]
     expect(project.status).toBe('Released — v0.1.0')
     expect(project.evidence.summary).toBe('227 tests · 225 passed · 2 intentional skips')
+    expect(project.links.map(link => link.label)).toEqual(['View Repository', 'View v0.1.0 Release'])
     expect(project.links.map(link => link.href)).toEqual([
       'https://github.com/MasterAerol/opscheck-flow',
       'https://github.com/MasterAerol/opscheck-flow/releases/tag/v0.1.0',
@@ -32,11 +33,13 @@ describe('verified project data', () => {
     expect(JSON.stringify(project)).not.toMatch(/AI agent|227 passing/)
   })
 
-  it('keeps Hub and PasaWise built status conservative and public links unspecified', () => {
+  it('keeps Hub and PasaWise built status conservative with only the approved live links', () => {
     for (const project of [projects[1], projects[2]]) {
       expect(project.status).toMatch(/^Built \/ (Workflow Prototype|Web Application)$/)
-      expect(project.links).toEqual([])
+
     }
+    expect(projects[1].links).toEqual([{ label: 'View Live Project', href: 'https://ai-operations-hub-fawn.vercel.app/' }])
+    expect(projects[2].links).toEqual([{ label: 'View Live Project', href: 'https://pasawise.com/' }])
     expect(projects[1].technologies).toEqual(['Supabase', 'Supabase Auth', 'PostgreSQL', 'Row Level Security (RLS)', 'n8n', 'Google Sheets', 'TypeScript', 'JavaScript', 'Git', 'GitHub', 'Automated testing', 'Browser testing'])
     expect(projects[2].technologies).toEqual(['React', 'TypeScript', 'Vite', 'Hono', 'Cloudflare Workers', 'Cloudflare D1', 'SQL', 'Git', 'GitHub'])
     expect(projects[2].name).toBe('PasaWise CSE')
@@ -61,7 +64,8 @@ describe('verified project data', () => {
       for (const link of project.links) {
         const url = new URL(link.href)
         expect(url.protocol).toBe('https:')
-        expect(url.hostname).toBe('github.com')
+        expect(['github.com', 'ai-operations-hub-fawn.vercel.app', 'pasawise.com']).toContain(url.hostname)
+        expect(url.search).toBe('')
         expect(link.label.trim()).not.toBe('')
       }
     }

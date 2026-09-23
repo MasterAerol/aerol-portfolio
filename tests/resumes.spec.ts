@@ -20,9 +20,19 @@ for (const variant of ['software', 'operations', 'general-va'] as const) {
       await expect(page.getByRole('heading', { level: 1 })).toHaveText('James Aerol Ilagan')
       await expect(page.locator('.resume-project h3')).toHaveText(orders[variant])
       await expect(page.locator('canvas, .hero-visual, .site-header, [download], a[href$=".pdf"]')).toHaveCount(0)
-      if (variant !== 'general-va') await expect(page.getByRole('link', { name: /OpsCheck Flow Repository:/ })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
+      if (variant !== 'general-va') await expect(page.getByRole('link', { name: /OpsCheck Flow View Repository:/ })).toHaveAttribute('href', 'https://github.com/MasterAerol/opscheck-flow')
       await expect(page.getByRole('link', { name: /Email James Aerol/ })).toHaveAttribute('href', 'mailto:aerolilagan00@gmail.com')
       await expect(page.getByRole('link', { name: 'LinkedIn — Aerol Ilagan' })).toHaveAttribute('href', 'https://www.linkedin.com/in/aerol-ilagan-762830435')
+      for (const [name, href] of [
+        ['AI Operations Automation Hub', 'https://ai-operations-hub-fawn.vercel.app/'],
+        ['PasaWise CSE', 'https://pasawise.com/'],
+      ]) {
+        const article = page.getByRole('article', { name, exact: true })
+        await expect(article.getByRole('link')).toHaveCount(1)
+        await expect(article.getByRole('link', { name: name + ' View Live Project:', exact: false })).toHaveAttribute('href', href)
+        await expect(article.getByRole('link')).toContainText('View Live Project:')
+        await expect(article.getByRole('link')).not.toContainText('Repository:')
+      }
       const clipped = await page.locator('p, li, h1, h2, h3, a, button, dd').evaluateAll(nodes => nodes.filter(el => el.clientWidth && el.scrollWidth > el.clientWidth + 1).map(el => el.textContent))
       expect(clipped).toEqual([])
       expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0)
